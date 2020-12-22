@@ -9,9 +9,5 @@ var WooCommerce = new WooCommerceAPI({
   version: 'v3'
 });
 
-const getProductsInCart = () => {
-    axios.get("http://magiosbootcamp.ml/wp-json/wc/v3/products")
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-}
+
 
