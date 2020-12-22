@@ -1,13 +1,29 @@
-import WooCommerce from 'woocommerce-api';
-import axios from 'axios';
+import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
 
- 
-var WooCommerce = new WooCommerceAPI({
-  url: 'http://example.com',
-  consumerKey: 'ck_9be9e390810677fc9eb7ae2c51c2533a9e58669e',
-  consumerSecret: 'cs_cfdc41e2cff98ba78c5820d13666b2e51cdb9a9c',
-  version: 'v3'
-});
+export const GET_ALL_SHOP_ITEMS = "getAllShopItems"
+
+const api = new WooCommerceRestApi({
+    url: "http://magiosbootcamp.ml/",
+    consumerKey: "ck_db87c0bd5a70ec6fc3c5a610f72abed0de57d960",
+    consumerSecret: "cs_050edad6ea3532dcd47259866b2d2a799beceb93",
+    version: "wc/v3"
+  });
 
 
 
+  
+export const getAllShopItems = () =>{
+    return function(dispatch){
+        return api.get("products",{per_page: 90,})
+        .then((response) => {
+          console.log(response);
+          dispatch({
+            type: GET_ALL_SHOP_ITEMS,
+            payload: response,
+        })
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+        });
+    }
+}
