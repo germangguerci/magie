@@ -17,7 +17,7 @@ const ItemCard = ({product}) => {
     return(
         <div className="Product">
             <div className="contenedorImagen">
-                <img src={product.images[0].src}  className="clip-ellipse" alt=""/>
+                <Link to = {'/producto/'+ product.id}><img src={product.images[0].src}  className="clip-ellipse" alt=""/></Link>
             </div>
                 <h2>{product.name}</h2>
                 <p>Precio: ${product.price}</p>
