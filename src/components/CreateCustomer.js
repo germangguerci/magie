@@ -1,4 +1,4 @@
-import {api} from '../redux/actions'
+import {api} from '../redux/CartReducer/actions'
 
 const TESTINGDATA = {
     email: "john.doe@example.com",
