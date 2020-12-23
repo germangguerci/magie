@@ -1,33 +1,58 @@
-import { GET_ALL_SHOP_ITEMS, ADD_TO_CART, REMOVE_FROM_CART } from './actions';
+import { ADD_TO_CART, REMOVE_FROM_CART } from './actions';
 
 
 const initialState = {
-    productList: [],
     productsInCart: []
 }
 
-export default function rootReducer(state = initialState, action) {
+export default function cartReducer(state = initialState, action) {
     switch (action.type){
-        case GET_ALL_SHOP_ITEMS:{
-            //console.log(action.payload)
-            return {
-              ...state,
-              productList: action.payload
-            };
-        }
         case ADD_TO_CART:
-            productsInCart.map(product => {
-                if (product.id === action.payload.id) {
-                    return {
-                        ...state,
-                        productsInCart: [...productsInCart, productsInCart[product] = {...product, quantityInCart: quantityInCart + 1}]
+            let flag = false
+            if (!state.productsInCart.length) {
+                localStorage.setItem("Cart", JSON.stringify({...state, productsInCart: state.productsInCart.concat(action.payload)}));
+                return {...state, productsInCart: state.productsInCart.concat(action.payload)}
+            } 
+            else if (state.productsInCart.length) {
+                
+                state.productsInCart.map((product, index) => {
+                    if (product.id === action.payload.id) {
+                        
+                        console.log("Entra aca en comparar id");
+                        console.log("State: ", state.productsInCart)
+                        flag = true
+                        let products = localStorage.getItem('Cart')
+                        // if () {
+                        //     products = JSON.parse( localStorage.getItem("Cart"))
+                        // }
+                        products = JSON.parse( localStorage.getItem("Cart"))
+                        console.log("products =>",products)
+                        // products.push({'productId' : productId + 1, image : '<imageLink>'});
+
+                        // console.log("Item: ", itemRepeated[index])
+                        products[index].quantityInCart += 1;
+
+                        return localStorage.setItem("Cart",JSON.stringify(
+                            products
+                            // {
+                            // // {...product, quantityInCart: product.quantityInCart++}
+                            // productsInCart: [...state.productsInCart, {...product, quantityInCart: product.quantityInCart++}]}
+                        ))
+
                     }
+                    console.log("state: ", state.productsInCart);
+                    
                 }
-            })
-            return {
-                ...state,
-                productsInCart: state.productsInCart.concat({...action.payload, quantityInCart: 1})
-            };
+            )
+            if (!flag) {
+                console.log(action.payload)
+                return {
+                    ...state, productsInCart: state.productsInCart.concat(action.payload)
+                    //...state.productsInCart.push({...action.payload})
+                };
+            }
+        } 
+            
         case REMOVE_FROM_CART:
             return {
                 ...state,
@@ -35,4 +60,12 @@ export default function rootReducer(state = initialState, action) {
             };
         default: return state;
     }
+    // function addProduct(){
+    //     let products = [];
+    //     if(localStorage.getItem('products')){
+    //         products = JSON.parse(localStorage.getItem('products'));
+    //     }
+    //     products.push({'productId' : productId + 1, image : '<imageLink>'});
+    //     localStorage.setItem('products', JSON.stringify(products));
+    // }
 }

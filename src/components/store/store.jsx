@@ -13,12 +13,13 @@ export default function Store(props){
         })();
       }, [dispatch]);
 
-    console.log(productList)
     return (
         <div>
-            {!productList ? <p>{console.log("entre al loading")} Loading...</p> : productList.map((product => {
-                return <ItemCard key={product.id} product={product} />})) 
-            }
+            <div className="containerWrap" >
+                {!productList ? <p>{console.log("entre al loading")} Loading...</p> : productList.map((product => {
+                    return <ItemCard key={product.id} product={product} />})) 
+                }
+            </div>
         </div>
     )
 }

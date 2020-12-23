@@ -1,6 +1,15 @@
 .container {
+    display: inline-block;
     width: 200px;
     height: 100px;
     margin: 20px;
     padding: 10px;
+    border: 1px solid black;
+}
+
+
+.containerWrap {
+    display: flex;
+    
+    width: 100%;
 }

@@ -26,7 +26,7 @@ export const getAllShopItems = () =>{
         })
         .catch((error) => {
           dispatch({type: SET_ERROR})
-          console.log(error.response.data);
+          console.log(error);
         });
     }
 }

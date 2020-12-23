@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { removeFromCart } from '../../redux/CartReducer/actions';
 
 const Cart = () => {
-    const products = useSelector(state => state.productsInCart);
+    const { productsInCart } = JSON.parse(localStorage.getItem("Cart"));
     const dispatch = useDispatch();
 
+    console.log("ProductsInCart: ",productsInCart);
+    
     const handleDecrease = e => {
         e.preventDefault();
         
@@ -28,9 +30,10 @@ const Cart = () => {
         <div>
             <h1>Cart</h1>
             <div>
-                {products.map(product => {
+                {productsInCart.map(product => {
                     return (
-                        <div>
+                        <div key={product.id} className="product-in-cart" >
+                            <img src={product.img} />
                             <Link to={`/product/${product.id}`}>{product.name}</Link>
                             <p>{product.price}</p>
                             <p>{product.quantity}</p>
