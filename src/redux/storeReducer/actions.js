@@ -1,6 +1,9 @@
 import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
 
 export const GET_ALL_SHOP_ITEMS = "getAllShopItems"
+export const SET_LOADING = "setLoading"
+export const SET_ERROR = "setError"
+export const IS_LOADED = "isLoaded"
 
 const api = new WooCommerceRestApi({
     url: "http://magiosbootcamp.ml/",
@@ -14,16 +17,22 @@ const api = new WooCommerceRestApi({
   
 export const getAllShopItems = () =>{
     return function(dispatch){
+        dispatch({type: SET_LOADING})
         return api.get("products",{per_page: 90,})
         .then((response) => {
-          console.log(response);
           dispatch({
             type: GET_ALL_SHOP_ITEMS,
-            payload: response,
+            payload: response.data,
         })
+          dispatch({
+            type: IS_LOADED,
+          })
         })
         .catch((error) => {
+          dispatch({type: SET_ERROR})
           console.log(error.response.data);
         });
     }
 }
+
+
