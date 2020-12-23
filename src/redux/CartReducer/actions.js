@@ -1,6 +1,10 @@
 import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
 
-export const GET_ALL_SHOP_ITEMS = "getAllShopItems"
+export const GET_ALL_SHOP_ITEMS = "getAllShopItems";
+export const ADD_TO_CART = "addToCart";
+export const REMOVE_FROM_CART = "removeFromCart";
+export const INCREASE_QUANTITY_IN_CART = "increaseQuantityInCart";
+export const DECREASE_QUANTITY_IN_CART = "decreaseQuantityInCart";
 
 const api = new WooCommerceRestApi({
     url: "http://magiosbootcamp.ml/",
@@ -27,3 +31,23 @@ export const getAllShopItems = () =>{
         });
     }
 }
+
+export const addToCart = payload => {
+  return {
+    type: ADD_TO_CART,
+    payload
+  }
+};
+
+export const increaseQuantityInCart = id => {
+  return {
+    
+  }
+}
+
+export const removeFromCart = id => {
+  return {
+    type: REMOVE_FROM_CART,
+    id
+  }
+};
