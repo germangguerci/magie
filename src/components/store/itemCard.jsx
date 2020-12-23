@@ -1,8 +1,6 @@
 import React from 'react';
 import './styles/itemcard.css'
 
-
-
 const ItemCard = ({product}) => {
     return(
         <div  className="container">

@@ -11,14 +11,10 @@ const api = new WooCommerceRestApi({
     consumerSecret: "cs_050edad6ea3532dcd47259866b2d2a799beceb93",
     version: "wc/v3"
   });
-
-
-
   
 export const getAllShopItems = () =>{
     return function(dispatch){
-        dispatch({type: SET_LOADING})
-        return api.get("products",{per_page: 90,})
+        return api.get("products",{per_page: 90, status: "publish",})
         .then((response) => {
           dispatch({
             type: GET_ALL_SHOP_ITEMS,
