@@ -1,6 +1,52 @@
-.container {
-    width: 200px;
-    height: 100px;
-    margin: 20px;
-    padding: 10px;
+.Product{
+    width: 18%;
+    min-width: 100px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    float: left;
+    margin: 1%;
+  }
+
+.Product img{
+    background-color:rgb(50, 50, 50);
+    text-align: center;
+    max-height: 150px;
+    width: 90%;
+    margin: 5%;
+    border-radius: 5px;
+  }
+.contenedorImagen{
+    height: 200px;
 }
+.Product h2{
+    width: 90%;
+    margin: 1% 5%;
+    font-size: 1rem;
+  }
+  
+  .Product p{
+    width: 90%;
+    margin: 1% 5%;
+  }
+  
+  .Product h4{
+    width: 90%;
+    margin: 1% 5%;
+  }
+  
+  .Product button{
+    background-color: rgb(50, 50, 50);
+      color: rgb(236, 248, 73);
+    width: 90%;
+    margin: 5%;
+    position: relative;
+    top: 5px;
+  }
+  
+  .Product button:hover{
+    background-color: rgb(236, 248, 73);
+    color:rgb(50, 50, 50);
+    width: 90%;
+    margin: 5%;
+  }
+  
