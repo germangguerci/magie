@@ -15,6 +15,9 @@
     margin: 5%;
     border-radius: 5px;
   }
+.Product img:hover{
+    opacity: 0.7;
+}
 .contenedorImagen{
     height: 200px;
 }
