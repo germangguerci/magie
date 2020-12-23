@@ -52,25 +52,3 @@ export const removeFromCart = id => {
   }
 };
 
-/* const TESTINGDATA = {
-  email: "john.doe@example.com",
-  first_name: "John",
-  last_name: "Doe",
-  username: "john.doe",
-  password: "8V91PhV6SMGBx(ht6hB231!N"
-}
-
-export const createCustomer = () => {
-  return (dispatch) => {
-    return api.post("customers", TESTINGDATA)
-    .then((response) => {
-      console.log(response);
-      dispatch({
-        type: CREATE_CUSTOMER,
-        payload: response
-      })
-    })
-    .catch((error) => {console.log("Create customer error: ", error)})
-  }
-}
- */
