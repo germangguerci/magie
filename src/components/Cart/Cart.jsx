@@ -1,28 +1,25 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { removeFromCart } from '../../redux/CartReducer/actions';
+import { removeFromCart, increaseQuantityInCart, decreaseQuantityInCart } from '../../redux/CartReducer/actions';
 
 const Cart = () => {
-    const { productsInCart } = JSON.parse(localStorage.getItem("Cart"));
+    const productsInCart = useSelector(state => state.cartReducer.productsInCart);
     const dispatch = useDispatch();
 
     console.log("ProductsInCart: ",productsInCart);
     
-    const handleDecrease = e => {
-        e.preventDefault();
-        
+    const handleDecrease = id => {
+        dispatch(decreaseQuantityInCart(id))
     };
 
-    const handleIncrease = e => {
-        e.preventDefault();
-
+    const handleIncrease = id => {
+        dispatch(increaseQuantityInCart(id))
     };
 
-    const handleRemove = e => {
-        e.preventDefault();
-        dispatch(() => removeFromCart(e.id))
+    const handleRemove = id => {
+        dispatch(removeFromCart(id))
     };
 
 
@@ -30,21 +27,28 @@ const Cart = () => {
         <div>
             <h1>Cart</h1>
             <div>
-                {productsInCart.map(product => {
+                { productsInCart.length ? productsInCart.map(product => {
                     return (
                         <div key={product.id} className="product-in-cart" >
-                            <img src={product.img} />
+                            <img src={product.img} alt={product.name} />
                             <Link to={`/product/${product.id}`}>{product.name}</Link>
-                            <p>{product.price}</p>
-                            <p>{product.quantity}</p>
-                            <button onClick={e => handleIncrease(e.target.value)} >+1</button>
-                            <button onClick={e => handleDecrease(e.target.value)} >-1</button>
-                            <button onClick={e => handleRemove(e.target.value)} >Remove</button>
+                            {product.stock_quantity ? <div>
+                                                      <ul>
+                                                        <li>Item Price: {product.price}</li>
+                                                        <li>Stock: {product.stock}</li>
+                                                        <li>Quantity in cart: {product.quantityInCart}</li>
+                                                      </ul>
+                                                      <button onClick={() => handleIncrease(product.id)} >+1</button>
+                                                      <button onClick={() => handleDecrease(product.id)} >-1</button>
+                                                      <button onClick={() => handleRemove(product.id)} src="./Images/trash-solid.svg" >Remove from cart</button> 
+                                                      </div>
+                                                      : <p>There's no stock for this article</p>}
+                            
                         </div>
                     )
-                })}
+                }) : <p>There's nothing in the cart!</p>}
             </div>
-            <h2>Total: </h2>
+            <h2>Total: {productsInCart.reduce((a,b) => a + b.price * b.quantityInCart, 0)}</h2>
         </div>
     )
 }
