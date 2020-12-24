@@ -1,30 +1,30 @@
 import {api} from '../../redux/CartReducer/actions'
 
 const TESTINGDATA = {
-  email: "john.doe@example.com",
-  first_name: "John",
-  last_name: "Doe",
-  username: "john.doe",
+  email: "jaunsarascamila@gmail.com",
+  first_name: "Camila",
+  last_name: "Jaunsaras",
+  username: "camilajaunsaras",
   billing: {
-    first_name: "John",
-    last_name: "Doe",
+    first_name: "camila",
+    last_name: "jaunsaras",
     company: "",
-    address_1: "969 Market",
+    address_1: "969 Markett",
     address_2: "",
-    city: "San Francisco",
-    state: "CA",
+    city: "Mar de ajo",
+    state: "BSAS",
     postcode: "94103",
     country: "US",
-    email: "john.doe@example.com",
-    phone: "(555) 555-5555"
+    email: "jaunsarascamila@gmail.com",
+    phone: "(555) 535-5555"
   },
   shipping: {
-    first_name: "John",
-    last_name: "Doe",
+    first_name: "Camila",
+    last_name: "Jaunsaras",
     company: "",
-    address_1: "969 Market",
+    address_1: "969 Markeet",
     address_2: "",
-    city: "San Francisco",
+    city: "San Frrancisco",
     state: "CA",
     postcode: "94103",
     country: "US"
@@ -32,7 +32,8 @@ const TESTINGDATA = {
 };
   
   export const CreateCustomer = () => {
-    api.post("customers", TESTINGDATA)
+    console.log("Bearer "+ window.localStorage.getItem("tokenkey"))
+    api.post("customers", TESTINGDATA, {Authorization: ("Bearer "+ window.localStorage.getItem("tokenkey"))})
       .then((response) => {
         console.log(response);
         return (<p>Succes</p>)
