@@ -12,6 +12,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {useState} from 'react'
+import { useDispatch } from 'react-redux';
+import {loginSignIn} from '../../redux/LoginReducer/actions'
+
 
 function Copyright() {
   return (
@@ -70,6 +73,9 @@ export default function SignIn() {
     password: ''
   });
 
+  const dispatch = useDispatch();
+
+
   const [errors, setErrors] = useState({});
 
   const handleInputChange = function(e) {
@@ -83,8 +89,9 @@ export default function SignIn() {
   }
 
   const handleInput = (e) => {
-    e.preventDefault()
-    console.log(input.email, input.password)
+    e.preventDefault();
+    //console.log(input.email, input.password);
+    dispatch(loginSignIn({email: input.email, password: input.password}))
   };
 
   return (
