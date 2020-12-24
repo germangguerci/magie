@@ -3,6 +3,7 @@ import Store from '../components/store/store';
 import {CreateCustomer} from '../components/Customer/CreateCustomer';
 import {GetToken} from '../components/Customer/GetToken'
 import Cart from '../components/Cart/Cart';
+import SignIn from '../components/Login/SignIn'
 
 
 const routes = () => {
@@ -12,6 +13,8 @@ const routes = () => {
             <Route path="/createcustomer" component={CreateCustomer} />
             <Route path="/cart" component={Cart} />
             <Route path="/gettoken" component={GetToken} />
+            <Route path="/login/signin" component={SignIn} />
+
         </>
     )
     
