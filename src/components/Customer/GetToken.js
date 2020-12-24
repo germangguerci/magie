@@ -1,9 +1,6 @@
 import axios from 'axios';
 
-const usuario = "germangguerci@gmail.com"
-const contraseña = "m&!2iKaXn#gnnjVY"
-
-export const GetToken = () => {
+export const GetToken = (usuario="germangguerci@gmail.com", contraseña="m&!2iKaXn#gnnjVY") => {
     axios.post(`http://magiosbootcamp.ml/wp-json/jwt-auth/v1/token`, {username:usuario, password:contraseña})
       .then((response) => {
        var token = response.data.data.token;

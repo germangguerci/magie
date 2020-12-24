@@ -13,7 +13,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {useState} from 'react'
 import { useDispatch } from 'react-redux';
-import {loginSignIn} from '../../redux/LoginReducer/actions'
+import {loginSignIn} from '../../redux/LoginReducer/actions';
+import {GetToken} from '../Customer/GetToken';
 
 
 function Copyright() {
@@ -91,7 +92,8 @@ export default function SignIn() {
   const handleInput = (e) => {
     e.preventDefault();
     //console.log(input.email, input.password);
-    dispatch(loginSignIn({email: input.email, password: input.password}))
+    dispatch(loginSignIn({email: input.email, password: input.password}));
+    GetToken(input.email, input.password);
   };
 
   return (
