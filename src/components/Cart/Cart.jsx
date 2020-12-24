@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import styles from './styles/Cart.module.css';
+
 import { removeFromCart, increaseQuantityInCart, decreaseQuantityInCart } from '../../redux/CartReducer/actions';
 
 const Cart = () => {
@@ -24,31 +26,43 @@ const Cart = () => {
 
 
     return (
-        <div>
+        <div className={styles.cart} >
             <h1>Cart</h1>
-            <div>
+            <div className={styles.productsIncart} >
                 { productsInCart.length ? productsInCart.map(product => {
                     return (
-                        <div key={product.id} className="product-in-cart" >
-                            <img src={product.img} alt={product.name} />
-                            <Link to={`/product/${product.id}`}>{product.name}</Link>
-                            {product.stock_quantity ? <div>
-                                                      <ul>
+                        <div key={product.id} className={styles.productInCart} >
+                            <Link to={`/product/${product.id}`}><img src={product.img} alt={product.name} className={styles.images} /></Link>
+                            <Link to={`/product/${product.id}`} className={styles.link} >{product.name}</Link>
+                            {product.stock_quantity ? <div className={styles.details} >
+                                                      <ul className={styles.listItems} >
                                                         <li>Item Price: {product.price}</li>
                                                         <li>Stock: {product.stock}</li>
                                                         <li>Quantity in cart: {product.quantityInCart}</li>
                                                       </ul>
-                                                      <button onClick={() => handleIncrease(product.id)} >+1</button>
-                                                      <button onClick={() => handleDecrease(product.id)} >-1</button>
-                                                      <button onClick={() => handleRemove(product.id)} src="./Images/trash-solid.svg" >Remove from cart</button> 
+                                                      <div className={styles.buttons} >
+                                                        <div>
+                                                            <button className={styles.incDecButtons} onClick={() => handleIncrease(product.id)} >+1</button>
+                                                            <button className={styles.incDecButtons} onClick={() => handleDecrease(product.id)} >-1</button>
+                                                        </div>    
+                                                        <button onClick={() => handleRemove(product.id)} src="./Images/trash-solid.svg" className={styles.removeButton} >Remove</button> 
                                                       </div>
-                                                      : <p>There's no stock for this article</p>}
+                                                      </div>
+                                                      : <div>
+                                                          <p>There's no stock for this article</p>
+                                                          <button onClick={() => handleRemove(product.id)} src="./Images/trash-solid.svg" >Remove</button> 
+                                                        </div>
+                            }
                             
                         </div>
                     )
-                }) : <p>There's nothing in the cart!</p>}
+                }) 
+                : <p>There's nothing in the cart! Go buy something!</p>
+                }
+                <h2>Total: ${productsInCart.reduce((a,b) => a + b.price * b.quantityInCart, 0)}</h2>
+                <button className={styles.payButton} >Pay</button>
             </div>
-            <h2>Total: {productsInCart.reduce((a,b) => a + b.price * b.quantityInCart, 0)}</h2>
+            
         </div>
     )
 }

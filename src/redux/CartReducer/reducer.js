@@ -1,4 +1,5 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, INCREASE_QUANTITY_IN_CART, DECREASE_QUANTITY_IN_CART } from './actions';
+import { ADD_TO_CART, REMOVE_FROM_CART, INCREASE_QUANTITY_IN_CART, 
+         DECREASE_QUANTITY_IN_CART, NO_STOCK } from './actions';
 
 
 const initialState = {
@@ -11,6 +12,7 @@ export default function cartReducer(state = initialState, action) {
         case REMOVE_FROM_CART:
         case INCREASE_QUANTITY_IN_CART:
         case DECREASE_QUANTITY_IN_CART:
+        case NO_STOCK:
             return {productsInCart: action.newCart};
         default: 
             return state;
