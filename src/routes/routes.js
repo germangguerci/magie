@@ -1,9 +1,9 @@
 import {Route} from 'react-router-dom';
 import Store from '../components/store/store';
 import {CreateCustomer} from '../components/Customer/CreateCustomer';
-import {GetToken} from '../components/Customer/GetToken'
 import Cart from '../components/Cart/Cart';
-import SignIn from '../components/Login/SignIn'
+import SignIn from '../components/Login/SignIn';
+import GetMenu from '../components/test';
 
 
 const routes = () => {
@@ -12,8 +12,9 @@ const routes = () => {
             <Route path="/store" component={Store} />
             <Route path="/createcustomer" component={CreateCustomer} />
             <Route path="/cart" component={Cart} />
-            <Route path="/gettoken" component={GetToken} />
             <Route path="/login/signin" component={SignIn} />
+            <Route path="/test" component={GetMenu} />
+
 
         </>
     )

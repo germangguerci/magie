@@ -14,7 +14,7 @@ import Container from '@material-ui/core/Container';
 import {useState} from 'react'
 import { useDispatch } from 'react-redux';
 import {loginSignIn} from '../../redux/LoginReducer/actions';
-import {GetToken} from '../Customer/GetToken';
+import {GetToken} from './GetToken';
 
 
 function Copyright() {

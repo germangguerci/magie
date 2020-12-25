@@ -10,7 +10,7 @@ export const api = new WooCommerceRestApi({
     url: "http://magiosbootcamp.ml/",
     consumerKey: "ck_db87c0bd5a70ec6fc3c5a610f72abed0de57d960",
     consumerSecret: "cs_050edad6ea3532dcd47259866b2d2a799beceb93",
-    version: "wc/v3"
+    version: "wc/v3",
   });
 
 
@@ -27,7 +27,7 @@ export const getAllShopItems = () =>{
         })
         })
         .catch((error) => {
-          console.log(error.response.data);
+          console.log("error: ",error.response.data);
         });
     }
 }
