@@ -1,17 +1,16 @@
 import {SIGN_IN} from './actions'
 
 const initialState = {
-    email: "",
-    password: "",
+    loggedin: false
 }
 
 export default function loginReducer(state = initialState, action) {
     switch (action.type){
         case SIGN_IN:{
+            console.log("SIGN_IN", action.payload.loggedin)
             return {
               ...state,
-              email: action.payload.email,
-              password: action.payload.password
+              loggedin: action.payload.loggedin,
             };
         }
         default: return state;
