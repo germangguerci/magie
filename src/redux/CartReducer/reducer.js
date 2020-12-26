@@ -1,4 +1,4 @@
-import { GET_ALL_SHOP_ITEMS, ADD_TO_CART, REMOVE_FROM_CART } from './actions';
+/* import { GET_ALL_SHOP_ITEMS, ADD_TO_CART, REMOVE_FROM_CART } from './actions';
 
 
 const initialState = {
@@ -35,4 +35,4 @@ export default function rootReducer(state = initialState, action) {
             };
         default: return state;
     }
-}
+} */
