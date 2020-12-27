@@ -6,6 +6,7 @@ import SignIn from '../components/Login/SignIn';
 import GetMenu from '../components/test';
 import SignInFormik from '../components/Login/SignInFormik'
 import landingPage from '../components/landingPage/landing'
+import Navbar from '../components/Navbar/Navbar'
 
 
 const routes = () => {
@@ -18,9 +19,7 @@ const routes = () => {
             <Route path="/login/signin" component={SignIn} />
             <Route path="/test" component={GetMenu} />
             <Route path="/login/signinformik" component={SignInFormik} />
-
-
-
+            <Route path="/" component={Navbar} />
         </>
     )
     
