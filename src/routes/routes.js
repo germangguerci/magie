@@ -5,13 +5,11 @@ import Cart from '../components/Cart/Cart';
 import SignIn from '../components/Login/SignIn';
 import GetMenu from '../components/test';
 import SignInFormik from '../components/Login/SignInFormik'
-import landingPage from '../components/landingPage/landing'
 
 
 const routes = () => {
     return(
         <>
-            <Route exact path="/" component={landingPage}/>
             <Route path="/store" component={Store} />
             <Route path="/createcustomer" component={CreateCustomer} />
             <Route path="/cart" component={Cart} />
