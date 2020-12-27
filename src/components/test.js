@@ -7,4 +7,5 @@ const getMenu = () => {
     return null;
 };
 
+getMenu();
 export default getMenu;

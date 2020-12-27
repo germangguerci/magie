@@ -3,7 +3,6 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import {GetToken} from './GetToken';
 
 const validationSchema = yup.object({
   email: yup
@@ -24,8 +23,7 @@ const WithMaterialUI = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log("waeweaweawe")
-      GetToken(values.email, values.password);
+      alert(JSON.stringify(values, null, 2));
     },
   });
 
