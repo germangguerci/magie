@@ -14,10 +14,14 @@ export const logIn = payload => {
 export const getToken = (email, password) => (dispatch, getState) => {
     axios.post(`http://magiosbootcamp.ml/wp-json/jwt-auth/v1/token`, {username: email, password: password})
     .then((response) => {
-        console.log("response: ", response);
-        var token = response.data.data.token;
-        console.log("token: ", token);
-        window.localStorage.setItem("tokenkey", token);
-        dispatch(logIn({email, password, token}));
+        if(response.data.success){
+            var token = response.data.data.token;
+            window.localStorage.setItem("tokenkey", token);
+            dispatch(logIn({loggedin: true}));
+        }
+        else {
+            window.alert(response.data.message)
+        } 
     })
+    .catch(response => window.alert(response.data.message));
 }

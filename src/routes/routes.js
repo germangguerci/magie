@@ -5,13 +5,11 @@ import Cart from '../components/Cart/Cart';
 import GetMenu from '../components/test';
 import SignInFormik from '../components/Login/SignInFormik';
 import React from 'react';
-//import {useSelector} from 'react-redux';
 
 
 
 const routes = (props) => {
-    //const login = useSelector(state => state.loginReducer.token)
-    console.log(getState())
+    //console.log(props.store.getState())
     return(
         <>
             <Route path="/store" component={Store} />
