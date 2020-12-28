@@ -1,6 +1,10 @@
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import {logIn} from '../../redux/LoginReducer/actions'
 
-export const GetToken = (usuario, contraseña) => {
+
+  export const GetToken = (usuario, contraseña) => {
+    const dispatch = useDispatch()
     axios.post(`http://magiosbootcamp.ml/wp-json/jwt-auth/v1/token`, {username:usuario, password:contraseña})
       .then((response) => {
         var token = response.data.data.token;
@@ -10,6 +14,7 @@ export const GetToken = (usuario, contraseña) => {
       .then ((response) => {
         if(response.data.succes){
           window.alert(response.data.message)
+         dispatch(logIn({email: usuario, password: contraseña}))
         }
         else {
           window.alert(response.data.message)
@@ -19,4 +24,3 @@ export const GetToken = (usuario, contraseña) => {
       .catch((error) => {console.log("Create customer error: ", error); return null;});
       return null;
   }
-  

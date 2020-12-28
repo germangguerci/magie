@@ -3,6 +3,7 @@ import {SIGN_IN} from './actions'
 const initialState = {
     email: "",
     password: "",
+    token: ""
 }
 
 export default function loginReducer(state = initialState, action) {
@@ -11,7 +12,8 @@ export default function loginReducer(state = initialState, action) {
             return {
               ...state,
               email: action.payload.email,
-              password: action.payload.password
+              password: action.payload.password,
+              token: action.payload.token
             };
         }
         default: return state;
