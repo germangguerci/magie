@@ -19,7 +19,6 @@ export default function Store(props){
         }
         else{setLoading(true)}
       }, [dispatch]);
-    console.log(productList)
     if(loading){
       return <div className="contenedor"><Loader/></div>
     }

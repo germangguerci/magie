@@ -4,6 +4,7 @@ export const GET_ALL_SHOP_ITEMS = "getAllShopItems"
 export const SET_LOADING = "setLoading"
 export const SET_ERROR = "setError"
 export const IS_LOADED = "isLoaded"
+export const GET_CATEGORIES_SHOP = 'getAllCategories';
 
 const api = new WooCommerceRestApi({
     url: "http://magiosbootcamp.ml/",
@@ -29,6 +30,22 @@ export const getAllShopItems = () =>{
           console.log(error.response.data);
         });
     }
+}
+
+export const getAllCategories = () =>{
+  return function(dispatch){
+      return api.get("products/categories")
+      .then((response) => {
+        dispatch({
+          type: GET_CATEGORIES_SHOP,
+          payload: response.data,
+      })
+      console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+    } 
 }
 
 

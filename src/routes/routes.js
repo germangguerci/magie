@@ -1,5 +1,5 @@
 import {Route} from 'react-router-dom';
-import Store from '../components/store/catalogo';
+import Store from '../components/store/homeStore';
 import {CreateCustomer} from '../components/CreateCustomer';
 import Cart from '../components/Cart/Cart';
 import landingPage from '../components/landingPage/landing'
