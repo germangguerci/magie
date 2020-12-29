@@ -5,11 +5,10 @@ import Cart from '../components/Cart/Cart';
 import GetMenu from '../components/test';
 import SignInFormik from '../components/Login/SignInFormik';
 import React from 'react';
-
-
+import landingPage from '../components/landingPage/landing'
+import Navbar from '../components/Navbar/Navbar'
 
 const routes = (props) => {
-    //console.log(props.store.getState())
     return(
         <>
             <Route path="/store" component={Store} />
@@ -19,6 +18,7 @@ const routes = (props) => {
             <Route exact path="/login/signin">
                 {(window.localStorage.getItem("loggedin")) ? <Redirect to="/" /> : <SignInFormik />}
             </Route> 
+            <Route path="/" component={Navbar} />
         </>
     )
     
