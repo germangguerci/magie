@@ -1,0 +1,36 @@
+
+div.sticky {
+    margin-top: 2rem;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 2rem;
+
+}
+.container1{
+    margin-bottom: 2rem;
+}
+
+.sticky {
+    top: 10%;
+    position: sticky;
+
+}
+
+.categoryList {
+    text-align: left;
+}
+
+.sidebar-left {
+    padding: 0px 3.5%;
+}
+
+
+.pagcenter {
+    place-content: center;
+    margin-top: 1.5rem;
+}
+
+.arglbtn {
+    margin-top: 40px !important;
+    margin-bottom: -20px !important;
+}

@@ -9,7 +9,8 @@ const routes = () => {
     return(
         <>
             <Route exact path="/" component={landingPage}/>
-            <Route path="/store" component={Store} />
+            <Route exact path="/products" component={Store} />
+            <Route exact path="/products/category/:cat" component={Store} />   
             <Route path="/createcustomer" component={CreateCustomer} />
             <Route path="/cart" component={Cart} />
         </>
