@@ -1,4 +1,12 @@
-import {api} from '../../redux/CartReducer/actions'
+import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
+
+
+export const api = new WooCommerceRestApi({
+  url: "http://magiosbootcamp.ml/",
+  consumerKey: "ck_db87c0bd5a70ec6fc3c5a610f72abed0de57d960",
+  consumerSecret: "cs_050edad6ea3532dcd47259866b2d2a799beceb93",
+  version: "wc/v3",
+});
 
 const TESTINGDATA = {
   email: "dipiso1688@kakekbet.com",

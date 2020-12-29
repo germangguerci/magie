@@ -1,15 +1,14 @@
-import { TramOutlined } from '@material-ui/icons';
 import axios from 'axios'; 
 export const SIGN_IN = "signIn";
 export const GET_TOKEN = "getToken";
 
 
-export const logIn = payload => {
+/* export const logIn = payload => {
    return {
         type: SIGN_IN,
         payload
     }
-}
+} */
 
 
 export const getToken = (email, password) => (dispatch, getState) => {
@@ -19,7 +18,7 @@ export const getToken = (email, password) => (dispatch, getState) => {
             var token = response.data.data.token;
             window.localStorage.setItem("tokenkey", token);
             window.localStorage.setItem("loggedin", true);
-            dispatch(logIn({loggedin: "true"}));
+            //dispatch(logIn({loggedin: "true"}));
         }
         else {
             window.alert(response.data.message)
