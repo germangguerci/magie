@@ -15,10 +15,9 @@ const routes = (props) => {
             <Route path="/store" component={Store} />
             <Route path="/createcustomer" component={CreateCustomer} />
             <Route path="/cart" component={Cart} />
-            {/* <Route path="/login/signin" component={SignInFormik} /> */}
             <Route path="/test" component={GetMenu} />
             <Route exact path="/login/signin">
-                {(false) ? <Redirect to="/" /> : <SignInFormik />}
+                {(window.localStorage.getItem("loggedin")) ? <Redirect to="/" /> : <SignInFormik />}
             </Route> 
         </>
     )

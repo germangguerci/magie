@@ -28,12 +28,8 @@ const WithMaterialUI = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-    /*   dispatch(logIn({
-        email: values.email,
-        password: values.password
-      })); */
       dispatch(getToken(values.email, values.password));
-      //GetToken(values.email, values.password);
+      setTimeout(function(){ window.location.reload(); }, 500);
     },
   });
 
