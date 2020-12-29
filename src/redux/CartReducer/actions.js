@@ -4,28 +4,36 @@ export const INCREASE_QUANTITY_IN_CART = "increaseQuantityInCart";
 export const DECREASE_QUANTITY_IN_CART = "decreaseQuantityInCart";
 export const NO_STOCK = "noStock";
 
-export const addToCart = (payload) => (dispatch, getState) => {
+export const addToCart = payload => (dispatch, getState) => {
   const { id, name, price, stock_quantity, stock_status, images } = payload;
+  const availableStock = stock_quantity;
 
   const newCart = getState().cartReducer.productsInCart.slice();
+  const noStock = newCart.filter(el => el.quantityInCart !== availableStock);
 
   let flag = false;
-  if (!stock_quantity) {
+  if (stock_status !== 'instock' || !availableStock) {
+    console.log("name: " + name + " stock_status: " + stock_status);
+    if (noStock.length <= 0) {
+
     newCart.push({
       id,
       name,
       img: images[0].src,
     });
+
+  }
+
     dispatch({
       type: NO_STOCK,
       newCart,
     });
+
   } else {
+    console.log(payload);
     newCart.forEach((product) => {
-      if (
-        product.id === id &&
-        product.stock > 0 &&
-        product.quantityInCart <= product.stock_quantity
+      if (product.id === id &&
+          product.quantityInCart < availableStock
       ) {
         product.stock--;
         product.quantityInCart++;
@@ -51,6 +59,7 @@ export const addToCart = (payload) => (dispatch, getState) => {
       newCart,
     });
     localStorage.setItem("Cart", JSON.stringify(newCart));
+
   }
 };
 
@@ -89,13 +98,11 @@ export const decreaseQuantityInCart = id => (dispatch, getState) => {
 }
 
 export const removeFromCart = id => (dispatch, getState) => {
-  console.log("getState: ", getState())
-  const newCart = getState().cartReducer.productsInCart.filter(product => product.id !== id);
-    console.log("newCart: " , newCart);
+  const newCart = getState().cartReducer.productsInCart.slice().filter(product => product.id !== id);
   dispatch({
     type: REMOVE_FROM_CART,
     newCart
-  })
+  });
   localStorage.setItem("Cart", JSON.stringify(newCart));
 };
 
