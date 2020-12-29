@@ -19,7 +19,7 @@ export const getToken = (email, password) => (dispatch, getState) => {
             var token = response.data.data.token;
             window.localStorage.setItem("tokenkey", token);
             window.localStorage.setItem("loggedin", true);
-            dispatch(logIn({loggedin: true}));
+            dispatch(logIn({loggedin: "true"}));
         }
         else {
             window.alert(response.data.message)

@@ -3,8 +3,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { GetToken } from './GetToken';
-import {logIn, getToken} from '../../redux/LoginReducer/actions'
+import {getToken} from '../../redux/LoginReducer/actions'
 import {useDispatch} from 'react-redux'
 
 const validationSchema = yup.object({
@@ -29,7 +28,7 @@ const WithMaterialUI = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       dispatch(getToken(values.email, values.password));
-      setTimeout(function(){ window.location.reload(); }, 500);
+      setTimeout(function(){ window.location.reload(); }, 2000);
     },
   });
 
