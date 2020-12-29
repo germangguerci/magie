@@ -1,24 +1,23 @@
-import {Route} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 import Store from '../components/store/store';
 import {CreateCustomer} from '../components/Customer/CreateCustomer';
 import Cart from '../components/Cart/Cart';
-import SignIn from '../components/Login/SignIn';
 import GetMenu from '../components/test';
-import SignInFormik from '../components/Login/SignInFormik'
+import SignInFormik from '../components/Login/SignInFormik';
+import React from 'react';
 import landingPage from '../components/landingPage/landing'
 import Navbar from '../components/Navbar/Navbar'
 
-
-const routes = () => {
+const routes = (props) => {
     return(
         <>
-            <Route exact path="/" component={landingPage}/>
             <Route path="/store" component={Store} />
             <Route path="/createcustomer" component={CreateCustomer} />
             <Route path="/cart" component={Cart} />
-            <Route path="/login/signin" component={SignIn} />
             <Route path="/test" component={GetMenu} />
-            <Route path="/login/signinformik" component={SignInFormik} />
+            <Route exact path="/login/signin">
+                {(window.localStorage.getItem("loggedin")) ? <Redirect to="/" /> : <SignInFormik />}
+            </Route> 
             <Route path="/" component={Navbar} />
         </>
     )

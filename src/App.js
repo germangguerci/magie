@@ -2,10 +2,10 @@ import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './routes/routes'
 
-function App() {
+function App(props) {
   return (
-    <BrowserRouter>
-      <Routes/>
+    <BrowserRouter store={props.store}>
+      <Routes store={props.store}/>
     </BrowserRouter>
   );
 }

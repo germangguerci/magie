@@ -3,6 +3,9 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import { GetToken } from './GetToken';
+import {logIn, getToken} from '../../redux/LoginReducer/actions'
+import {useDispatch} from 'react-redux'
 
 const validationSchema = yup.object({
   email: yup
@@ -15,7 +18,9 @@ const validationSchema = yup.object({
     .required('Password is required'),
 });
 
+
 const WithMaterialUI = () => {
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       email: 'foobar@example.com',
@@ -23,7 +28,8 @@ const WithMaterialUI = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      dispatch(getToken(values.email, values.password));
+      setTimeout(function(){ window.location.reload(); }, 500);
     },
   });
 
