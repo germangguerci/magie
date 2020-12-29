@@ -7,10 +7,14 @@ import landingPage from '../components/landingPage/landing'
 
 const routes = () => {
     return(
-        <>
+        <>  
+
+            {/* ----------------store routes--------------------------- */}
             <Route exact path="/" component={landingPage}/>
+            <Route path="/products/search/:name" component={Store} />
             <Route exact path="/products" component={Store} />
-            <Route exact path="/products/category/:cat" component={Store} />   
+            <Route exact path="/products/category/:cat" component={Store} />  
+            {/* ------------------------------------------------------- */} 
             <Route path="/createcustomer" component={CreateCustomer} />
             <Route path="/cart" component={Cart} />
         </>

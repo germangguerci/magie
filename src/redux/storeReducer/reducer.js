@@ -1,11 +1,12 @@
-import { GET_ALL_SHOP_ITEMS, GET_CATEGORIES_SHOP, GET_PRODUCTS_PER_PAGE, GET_PRODUCTS_PER_PAGE_AND_CATEGORY } from './actions';
+import { GET_ALL_SHOP_ITEMS, GET_CATEGORIES_SHOP, GET_PRODUCTS_PER_PAGE, GET_PRODUCTS_PER_PAGE_AND_CATEGORY , PRODUCT_NAME} from './actions';
 
 
 const initialState = {
     productList: [],
-    productListCategory: [],
     productCategories: [],
     totalProducts: 0,
+    itemSearch: ""
+
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -32,6 +33,12 @@ export default function rootReducer(state = initialState, action) {
             return{
                 ...state,
                 productList:action.payload
+            }
+        }
+        case PRODUCT_NAME:{
+            return{
+                ...state,
+                itemSearch: action.payload
             }
         }
         default: return state;

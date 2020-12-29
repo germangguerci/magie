@@ -4,6 +4,7 @@ export const GET_ALL_SHOP_ITEMS = "getAllShopItems"
 export const GET_PRODUCTS_PER_PAGE = 'getItemsPerPage'
 export const GET_CATEGORIES_SHOP = 'getAllCategories';
 export const GET_PRODUCTS_PER_PAGE_AND_CATEGORY = 'getItemsPerPageAndCategory';
+export const PRODUCT_NAME = 'searchName'
 
 const api = new WooCommerceRestApi({
     url: "http://magiosbootcamp.ml/",
@@ -12,6 +13,12 @@ const api = new WooCommerceRestApi({
     version: "wc/v3"
   });
   
+  export const searchName = () => {
+    return{
+      type: PRODUCT_NAME,
+    }
+  };
+
 export const getAllShopItems = () =>{
     return function(dispatch){
         return api.get("products",{per_page: 100 ,status: "publish",})
@@ -63,6 +70,7 @@ export const getAllCategories = () =>{
 
 export const getItemsPerPageAndCategory = (pages,page,id) =>{
   return function(dispatch){
+    console.log(page)
       return api.get("products",{status: "publish",per_page: pages, page: page, category: id})
       .then((response) => {
         console.log(response.data)
