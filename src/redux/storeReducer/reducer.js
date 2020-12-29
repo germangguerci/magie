@@ -1,11 +1,12 @@
-import { GET_ALL_SHOP_ITEMS, SET_LOADING, SET_ERROR, IS_LOADED } from './actions';
+import { GET_ALL_SHOP_ITEMS, GET_CATEGORIES_SHOP, GET_PRODUCTS_PER_PAGE, GET_PRODUCTS_PER_PAGE_AND_CATEGORY , PRODUCT_NAME} from './actions';
 
 
 const initialState = {
     productList: [],
-    loading: false,
-    loaded: false,
-    error: false,
+    productCategories: [],
+    totalProducts: 0,
+    itemSearch: ""
+
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -13,22 +14,32 @@ export default function rootReducer(state = initialState, action) {
         case GET_ALL_SHOP_ITEMS:{
             return {
               ...state,
-              productList: action.payload,
-              loading: false,
+              totalProducts: action.payload,
             };
         }
-        case SET_LOADING : return{
-            ...state,
-            loading : !state.loading
+        case GET_PRODUCTS_PER_PAGE:{
+            return{
+                ...state,
+                productList: action.payload
+            }
         }
-        case SET_ERROR : return{
-            ...state,
-            loading : false,
-            error: true,
+        case GET_CATEGORIES_SHOP:{
+            return{
+                ...state,
+                productCategories: action.payload
+            }
         }
-        case IS_LOADED: return{
-            ...state,
-            loaded : true,
+        case GET_PRODUCTS_PER_PAGE_AND_CATEGORY:{
+            return{
+                ...state,
+                productList:action.payload
+            }
+        }
+        case PRODUCT_NAME:{
+            return{
+                ...state,
+                itemSearch: action.payload
+            }
         }
         default: return state;
     }
