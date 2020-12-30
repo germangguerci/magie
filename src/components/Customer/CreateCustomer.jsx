@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import {useDispatch} from 'react-redux'
-
+import {postCustomer} from './postCustomer'
 const validationSchema = yup.object({
   email: yup
     .string('Enter your email')
@@ -71,7 +71,8 @@ export const CreateCustomer = () => {
     onSubmit: (values) => {
       //dispatch(getToken(values.email, values.password));
       //setTimeout(function(){ window.location.reload(); }, 2000);
-      console.log(values)
+      postCustomer(values)
+      //console.log(values)
     },
   });
 
