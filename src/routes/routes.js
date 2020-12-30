@@ -1,5 +1,5 @@
 import {Route} from 'react-router-dom';
-import {CreateCustomer} from '../components/Customer/CreateCustomer';
+import {CreateCustomer} from '../components/Customer/CreateCustomer.jsx'
 import React from 'react';
 import {LogOut, LogIn} from './PrivateRoutes' 
 
