@@ -18,7 +18,6 @@ const routes = () => {
             {/* ------------------------------------------------------- */} 
             <Route path="/createcustomer" component={CreateCustomer} />
             <Route path="/cart" component={Cart} />
-            <Route path="/createcustomer" component={CreateCustomer} />
                 {LogOut()}
                 {LogIn()}
         </>
