@@ -31,4 +31,4 @@ export const getAllShopItems = () =>{
     }
 }
 
-
+export default api;
