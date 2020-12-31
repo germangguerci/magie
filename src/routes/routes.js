@@ -1,8 +1,10 @@
 import {Route} from 'react-router-dom';
 import Store from '../components/store/homeStore';
-import {CreateCustomer} from '../components/CreateCustomer';
+import React from 'react';
+import {CreateCustomer} from '../components/Customer/CreateCustomer.jsx'
 import Cart from '../components/Cart/Cart';
 import landingPage from '../components/landingPage/landing'
+import {LogOut, LogIn} from './PrivateRoutes' 
 
 
 const routes = () => {
@@ -17,10 +19,14 @@ const routes = () => {
             {/* ------------------------------------------------------- */} 
             <Route path="/createcustomer" component={CreateCustomer} />
             <Route path="/cart" component={Cart} />
+            <Route path="/createcustomer" component={CreateCustomer} />
+                {LogOut()}
+                {LogIn()}
         </>
     )
     
 }
+
 
 
 
