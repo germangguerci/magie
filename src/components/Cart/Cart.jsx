@@ -69,7 +69,7 @@ const Cart = () => {
                 <h2>Total: ${productsInCart.reduce((a,b) => a + b.price * b.quantityInCart, 0)}</h2>
                 
                 <form action="http://localhost:3001/checkout" method="POST" >
-                    <input type="hidden" name="items" value={{items}} />
+                    <input type="hidden" name="items" value={JSON.stringify(items)} />
                     <input type="submit" className={styles.payButton} value="Pay" />
                 </form>
                 
@@ -93,7 +93,9 @@ export default Cart;
     //        "nickname":"TEST47MCKCCT",
     //        "password":"qatest8119",
     //        "site_status":"active",
-    //        "email":"test_user_80578478@testuser.com"
+    //        "email":"test_user_80578478@testuser.com",
+    //        "public_key":"TEST-ffa64a00-32d1-4bd6-8e6e-65cacd1a8193",
+    //        "access_token":"TEST-1335658861277365-123120-9be6c87d563467b9d0b9c9c2b63b16df-694878249"
     //     }
 //     {
 //         "id":694878448,
