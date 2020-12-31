@@ -6,7 +6,6 @@ import Cart from '../components/Cart/Cart';
 import landingPage from '../components/landingPage/landing'
 import {LogOut, LogIn} from './PrivateRoutes' 
 
-
 const routes = () => {
     return(
         <>  

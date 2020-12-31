@@ -5,72 +5,114 @@ export const ADD_TO_CART = "addToCart";
 export const REMOVE_FROM_CART = "removeFromCart";
 export const INCREASE_QUANTITY_IN_CART = "increaseQuantityInCart";
 export const DECREASE_QUANTITY_IN_CART = "decreaseQuantityInCart";
+export const NO_STOCK = "noStock";
 
-export const api = new WooCommerceRestApi({
-    url: "http://magiosbootcamp.ml/",
-    consumerKey: "ck_db87c0bd5a70ec6fc3c5a610f72abed0de57d960",
-    consumerSecret: "cs_050edad6ea3532dcd47259866b2d2a799beceb93",
-    version: "wc/v3"
+export const addToCart = payload => (dispatch, getState) => {
+  const { id, name, price, stock_quantity, stock_status, images } = payload;
+  const availableStock = stock_quantity;
+
+  const newCart = getState().cartReducer.productsInCart.slice();
+  const noStock = newCart.filter(el => el.quantityInCart !== availableStock);
+
+  let flag = false;
+  if (stock_status !== 'instock' || !availableStock) {
+    console.log("name: " + name + " stock_status: " + stock_status);
+    if (noStock.length <= 0) {
+
+    newCart.push({
+      id,
+      name,
+      img: images[0].src,
+    });
+
+  }
+
+    dispatch({
+      type: NO_STOCK,
+      newCart,
+    });
+
+  } else {
+    console.log(payload);
+    newCart.forEach((product) => {
+      if (product.id === id &&
+          product.quantityInCart < availableStock
+      ) {
+        product.stock--;
+        product.quantityInCart++;
+        flag = true;
+      }
+    });
+
+    if (!flag) {
+      newCart.push({
+        id,
+        name,
+        price,
+        stock_status,
+        stock_quantity,
+        stock: stock_quantity - 1,
+        quantityInCart: 1,
+        img: images[0].src,
+      });
+    }
+
+    dispatch({
+      type: ADD_TO_CART,
+      newCart,
+    });
+    localStorage.setItem("Cart", JSON.stringify(newCart));
+
+  }
+};
+
+export const increaseQuantityInCart = id => (dispatch, getState) => {
+  const newCart = getState().cartReducer.productsInCart.slice();
+
+  newCart.forEach(product => {
+    if (product.id === id && product.stock > 0) {
+      product.stock--;
+      product.quantityInCart++;
+    }
   });
 
+  dispatch({
+    type: INCREASE_QUANTITY_IN_CART,
+    newCart
+  });
+  localStorage.setItem("Cart", JSON.stringify(newCart));
+}
 
+export const decreaseQuantityInCart = id => (dispatch, getState) => {
+  const newCart = getState().cartReducer.productsInCart.slice();
 
-  
-export const getAllShopItems = () =>{
-    return function(dispatch){
-        return api.get("products",{per_page: 90,})
-        .then((response) => {
-          console.log(response);
-          dispatch({
-            type: GET_ALL_SHOP_ITEMS,
-            payload: response,
-        })
-        })
-        .catch((error) => {
-          console.log(error.response.data);
-        });
+  newCart.forEach(product => {
+    if (product.id === id && product.stock >= 0  && product.quantityInCart > 0) {
+      product.stock++;
+      product.quantityInCart--;
     }
+  });
+
+  dispatch({
+    type: DECREASE_QUANTITY_IN_CART,
+    newCart
+  });
+  localStorage.setItem("Cart", JSON.stringify(newCart));
 }
 
-export const addToCart = payload => {
-  return {
-    type: ADD_TO_CART,
-    payload
-  }
-};
-
-export const increaseQuantityInCart = id => {
-  return {
-    
-  }
-}
-
-export const removeFromCart = id => {
-  return {
+export const removeFromCart = id => (dispatch, getState) => {
+  const newCart = getState().cartReducer.productsInCart.slice().filter(product => product.id !== id);
+  dispatch({
     type: REMOVE_FROM_CART,
-    id
-  }
+    newCart
+  });
+  localStorage.setItem("Cart", JSON.stringify(newCart));
 };
 
-/* const TESTINGDATA = {
-  email: "john.doe@example.com",
-  first_name: "John",
-  last_name: "Doe",
-  username: "john.doe",
-  password: "8V91PhV6SMGBx(ht6hB231!N"
-}
-
-export const createCustomer = () => {
-  return (dispatch) => {
-    return api.post("customers", TESTINGDATA)
-    .then((response) => {
-      console.log(response);
-      dispatch({
-        type: CREATE_CUSTOMER,
-        payload: response
-      })
-    })
-    .catch((error) => {console.log("Create customer error: ", error)})
-  }
-}
- */
+// export const removeFromCart = (product) => (dispatch, getState) => {
+//   const cartItems = getState()
+//     .cart.cartItems.slice()
+//     .filter((x) => x._id !== product._id);
+//   dispatch({ type: REMOVE_FROM_CART, payload: { cartItems } });
+//   localStorage.setItem("cartItems", JSON.stringify(cartItems));
+// };
