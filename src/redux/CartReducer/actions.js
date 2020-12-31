@@ -1,3 +1,6 @@
+import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
+
+export const GET_ALL_SHOP_ITEMS = "getAllShopItems";
 export const ADD_TO_CART = "addToCart";
 export const REMOVE_FROM_CART = "removeFromCart";
 export const INCREASE_QUANTITY_IN_CART = "increaseQuantityInCart";
