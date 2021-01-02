@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Toolbar from '@material-ui/core/Toolbar';
-import { Typography, AppBar, IconButton, Drawer, MenuItem } from '@material-ui/core';
+import { Typography, AppBar, IconButton, Drawer, MenuItem, Container } from '@material-ui/core';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import StorefrontIcon from '@material-ui/icons/Storefront';
@@ -154,7 +154,9 @@ export const Header = () => {
         <header>
             <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/>
             <AppBar position="static">
-                {mobileView ? displayMobile() : displayDesktop()}
+                <Container maxWidth="lg"> 
+                    {mobileView ? displayMobile() : displayDesktop()}
+                </Container>    
             </AppBar>
         </header>
     )
