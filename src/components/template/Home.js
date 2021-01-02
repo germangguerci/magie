@@ -9,10 +9,10 @@ export const Home = () => {
     return(
         <>
             <CssBaseline />
-            <Container maxWidth="lg">
+            <Container maxWidth="lg"> 
                 <Header />
-                <Footer />
-            </Container>
+                <Footer /> 
+            </Container>   
         </>
     )
 }
