@@ -15,12 +15,10 @@ const Categories = ({categorys, filter, onSearch, onClear, filterCat}) => {
             </Link>
           ))}
         </div>
-      </div>
-      <div className={"categoryList d-none d-lg-flex flex-row rounded justify-content-center justify-content-lg-start"}>
         <div className="d-none d-lg-block justify-content-center my-auto">
             <SearchBar onSearch={onSearch} onClear={onClear} />
           </div>
-        </div>
+      </div>
       </>
     );
   };

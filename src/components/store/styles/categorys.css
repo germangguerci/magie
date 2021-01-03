@@ -34,3 +34,17 @@ div.sticky {
     margin-top: 40px !important;
     margin-bottom: -20px !important;
 }
+
+.Mui-selected{
+    outline: none;
+    background-color:transparent;
+}
+
+.Mui-selected:active{
+    outline: none;
+    background-color:transparent;
+}
+.Mui-selected:focus{
+    outline: none;
+    background-color:transparent;
+}
