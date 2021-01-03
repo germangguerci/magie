@@ -4,10 +4,11 @@ import { Typography, AppBar, IconButton, Drawer, MenuItem, Container } from '@ma
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import StorefrontIcon from '@material-ui/icons/Storefront';
-import PersonIcon from '@material-ui/icons/Person';
+//import PersonIcon from '@material-ui/icons/Person';
 import MenuIcon from '@material-ui/icons/Menu';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {Link as RouterLink} from 'react-router-dom';
+import {LoginModal} from './LoginModal'
 
 const useStyles = makeStyles((theme) => ({
     toolbar: {
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'row',
 
     },
-    toolbarOptions: {
+    toolbarOptionsCart: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -68,7 +69,6 @@ export const Header = () => {
     const classes = useStyles();
     const { mobileView, drawerOpen } = state;
 
-  
   useEffect(() => {
     const setResponsiveness = () => {
       return window.innerWidth < 900
@@ -84,18 +84,16 @@ export const Header = () => {
         return (
             <div className={classes.toolbarOptionsDiv}>
                 <div className={classes.toolbarOptions}>
-                    <PersonIcon/>
-                    <Link component={RouterLink} color="inherit" key="logIn" href='#'>LogIn</Link>
+                    {LoginModal()}
                 </div>
-                <div className={classes.toolbarOptions}>
+                <div className={classes.toolbarOptionsCart}>
                     <ShoppingCartIcon/>
-                    <Link component={RouterLink} color="inherit" key="logIn" href='#'>Cart</Link>
+                    <Link component={RouterLink} color="inherit" key="logIn" to='#'>Cart</Link>
                 </div>
             </div>
         )
     }
       const displayDesktop = () => {
-          
         return (
             <Toolbar className={classes.toolbar}>
                 <div className={classes.logoContainer}>
@@ -106,12 +104,12 @@ export const Header = () => {
                 </div>
                 <Toolbar component="nav" className={classes.toolbarSecondary}>
                         {sections.map((section) => (
-                            <Link component={RouterLink} color="inherit" key={section.title} href={section.url} className={classes.toolbarLink}>
+                            <Link component={RouterLink} color="inherit" key={section.title} href={section.url} className={classes.toolbarLink} to={section.url}>
                                 {section.title}
                             </Link>
                         ))}
                 </Toolbar>
-                <RightButtons />    
+                <RightButtons/>  
             </Toolbar>
         )
     } 
@@ -134,7 +132,7 @@ export const Header = () => {
                         Magie-Shop
                     </Typography>
                 </div>
-                {RightButtons()}
+                <RightButtons/>
                 
             </Toolbar>
         )
@@ -142,7 +140,7 @@ export const Header = () => {
     const getDrawerChoices = () => {
         return sections.map((section) => {
           return (
-            <Link component={RouterLink} to={section.url} color="inherit" key={section.title}>
+            <Link component={RouterLink} to={section.url} color="inherit" key={section.title} to={section.url}>
               <MenuItem>{section.title}</MenuItem>
             </Link>
           );

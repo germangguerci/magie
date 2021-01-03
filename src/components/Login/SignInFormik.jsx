@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import {getToken} from '../../redux/LoginReducer/actions'
 import {useDispatch} from 'react-redux'
+import { makeStyles } from '@material-ui/core/styles';
+
 
 const validationSchema = yup.object({
   email: yup
@@ -18,7 +20,7 @@ const validationSchema = yup.object({
 });
 
 
-const WithMaterialUI = () => {
+const WithMaterialUI = ({onClose}) => {
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -28,13 +30,23 @@ const WithMaterialUI = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       dispatch(getToken(values.email, values.password));
-      setTimeout(function(){ window.location.reload(); }, 2000);
+      setTimeout(function(){onClose()}, 500);
     },
   });
 
+  const useStyles = makeStyles((theme) => ({
+    form: {
+      backgroundColor: theme.palette.background.paper,
+      borderRadius: theme.shape.borderRadius,
+      padding: theme.spacing(1)
+    }
+  }))
+
+  const classes = useStyles();
+
   return (
     <div>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} className={classes.form}>
         <TextField
           fullWidth
           id="email"
