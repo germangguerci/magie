@@ -6,7 +6,7 @@ import ItemCard from '../../store/itemCard';
 const ProductsLanding = () => {
     const mainProducts = useSelector(state => state.storeReducer.productList)
     return (
-        <Grid item container>
+        <Grid item container justify="center">
         <Grid item xs={false} sm={2} />
         <Grid item xs={12} sm={8}>
           <Grid container spacing={5}>

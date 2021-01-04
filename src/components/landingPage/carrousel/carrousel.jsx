@@ -6,7 +6,7 @@ import { Carousel } from 'react-responsive-carousel';
 export default function DemoCarousel ({onChange,onClickItem, onClickThumb}){
         return (
         <div className="carousel-wrapper" >
-            <Carousel autoPlay={false}
+            <Carousel autoPlay={true}
              showStatus={false} 
              showThumbs={false}
              showArrows={true}
