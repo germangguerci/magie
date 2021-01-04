@@ -23,7 +23,13 @@ app.post('/checkout', (req, res) => {
   const items = JSON.parse(req.body.items)
 
   let preference = {
-    items: items
+    items: items,
+    back_urls: {
+      success: "http://localhost:3000/products",
+      failure: "http://localhost:3000/products",
+      pending: "http://localhost:3000/products"
+    },
+    auto_return: "approved"
   };
     
 

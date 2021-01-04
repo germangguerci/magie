@@ -1,85 +1,54 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import styles from './styles/Cart.module.css';
 
-import { removeFromCart, increaseQuantityInCart, decreaseQuantityInCart } from '../../redux/CartReducer/actions';
-
+import CartItem from './CartItem';
 
 const Cart = () => {
     const productsInCart = useSelector(state => state.cartReducer.productsInCart);
-    const dispatch = useDispatch();
 
     const items = productsInCart.map(product => {
         return {
             title: product.name,
-            unit_price: parseInt(product.price),
+            unit_price: parseFloat(product.price),
             quantity: product.quantityInCart
         };
     });
-
-    console.log("items: ", items);
-
-    // console.log("ProductsInCart: ",productsInCart);
-
-    // const pay = () => {
-    //     console.log("Entre a pay");
-    //     return axios.post('http://localhost:3001/checkout', {productsInCart})
-    //         .then(res => console.log("response axios", res))
-    //         .catch(err => console.log("error axios", err))
-    // }
-
 
     return (
         <div className={styles.cart} >
             <h1>Cart</h1>
             <div className={styles.productsIncart} >
-                { productsInCart.length ? productsInCart.map(product => {
-                    return (
-                        <div key={product.id} className={styles.productInCart} >
-                            <Link to={`/product/${product.id}`}><img src={product.img} alt={product.name} className={styles.images} /></Link>
-                            <Link to={`/product/${product.id}`} className={styles.link} >{product.name}</Link>
-                            {product.stock_quantity ?
-                                <div className={styles.details} >
-                                <ul className={styles.listItems} >
-                                <li>Item Price: {product.price}</li>
-                                <li>Stock: {product.stock}</li>
-                                <li>Quantity in cart: {product.quantityInCart}</li>
-                                </ul>
-                                <div className={styles.buttons} >
-                                <div>
-                                    <button disabled={product.quantityInCart === product.stock_quantity} className={styles.incDecButtons} onClick={() => dispatch(increaseQuantityInCart(product.id))} >+1</button>
-                                    <button disabled={product.quantityInCart === 1} className={styles.incDecButtons} onClick={() => dispatch(decreaseQuantityInCart(product.id))} >-1</button>
-                                </div>    
-                                <button onClick={() => dispatch(removeFromCart(product.id))} src="./Images/trash-solid.svg" className={styles.removeButton} >Remove</button> 
-                                </div>
-                                </div>
-                                : <div>
-                                    <p>There's no stock for this article</p>
-                                    <button onClick={() => dispatch(removeFromCart(product.id))} src="./Images/trash-solid.svg" >Remove</button> 
-                                </div>
-                            }
-                            
-                        </div>
-                    )
-                }) 
+                { productsInCart.length ? productsInCart.map(product => <CartItem product={product} />) 
                 : <p>There's nothing in the cart! Go buy something!</p>
                 }
-                <h2>Total: ${productsInCart.reduce((a,b) => a + b.price * b.quantityInCart, 0)}</h2>
-                
+                <h2>Total: ${productsInCart.reduce((acc, product) => acc + product.price * product.quantityInCart, 0)}</h2>               
                 <form action="http://localhost:3001/checkout" method="POST" >
                     <input type="hidden" name="items" value={JSON.stringify(items)} />
                     <input type="submit" className={styles.payButton} value="Pay" />
-                </form>
-                
+                </form>                
             </div>
-            
         </div>
     )
 }
 
 export default Cart;
+
+/* 
+    PAGO REALIZADO:
+    collection_id=1232464712
+    &collection_status=approved
+    &payment_id=1232464712
+    &status=approved
+    &external_reference=null
+    &payment_type=credit_card
+    &merchant_order_id=2167525124
+    &preference_id=694878249-0788e0f0-d474-4df3-ac58-19aa9d6b625f
+    &site_id=MLA
+    &processing_mode=aggregator
+    &merchant_account_id=null
+*/
 
 
 
