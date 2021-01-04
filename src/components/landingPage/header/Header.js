@@ -10,11 +10,13 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {Link as RouterLink} from 'react-router-dom';
 import {useHistory} from 'react-router-dom'
 import { Grid } from "@material-ui/core";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const useStyles = makeStyles((theme) => ({
     toolbar: {
       borderBottom: `1px solid ${theme.palette.divider}`,
       justifyContent: 'space-between',
+      backgroundColor: "#002984"
     },
     toolbarMobile:{
     },
@@ -107,6 +109,10 @@ export default function Header () {
                     <ShoppingCartIcon/>
                     <Link className={classes.LinkHome} color="inherit" key="logIn" href='#'>Cart</Link>
                 </div>
+                <div className={classes.toolbarOptions}>
+                    <AccountCircleIcon/>
+                    <Link className={classes.LinkHome} color="inherit" key="logIn" href='#'>Profile</Link>
+                </div>
             </div>
         )
     }
@@ -175,7 +181,7 @@ export default function Header () {
     return (
         <header>
             <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/>
-            <AppBar position="static">
+            <AppBar position="static" style={{backgroundColor:"#002984"}}>
                 <Container maxWidth="lg"> 
                     {mobileView ? displayMobile() : displayDesktop()}
                 </Container>    

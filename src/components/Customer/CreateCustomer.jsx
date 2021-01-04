@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import {useDispatch} from 'react-redux'
+//import {useDispatch} from 'react-redux'
 import {postCustomer} from './postCustomer'
 const validationSchema = yup.object({
   email: yup
@@ -52,7 +52,7 @@ const validationSchema = yup.object({
 
 
 export const CreateCustomer = () => {
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       email: 'foobar@example.com',

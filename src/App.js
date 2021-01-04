@@ -9,6 +9,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("COMIENZO")
     dispatch(getAllCategories())
     dispatch(getAllShopItems())
   },[dispatch])

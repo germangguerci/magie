@@ -1,12 +1,14 @@
 import React from 'react'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+// eslint-disable-next-line
 import style from "./carrusel.css"
 import { Carousel } from 'react-responsive-carousel';
 
-export default function DemoCarousel ({onChange,onClickItem, onClickThumb}){
+export default function carrusel ({onChange,onClickItem, onClickThumb}){
         return (
         <div className="carousel-wrapper" >
             <Carousel autoPlay={true}
+             interval={4000}
              showStatus={false} 
              showThumbs={false}
              showArrows={true}
