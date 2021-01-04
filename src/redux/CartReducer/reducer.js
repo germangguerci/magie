@@ -1,20 +1,73 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, INCREASE_QUANTITY_IN_CART, 
-         DECREASE_QUANTITY_IN_CART, NO_STOCK } from './actions';
+
+/* import { GET_ALL_SHOP_ITEMS, ADD_TO_CART, REMOVE_FROM_CART } from './actions';
+// import { GET_ALL_SHOP_ITEMS, ADD_TO_CART, REMOVE_FROM_CART } from './actions';
 
 
-const initialState = {
-    productsInCart: JSON.parse(localStorage.getItem("Cart" ) || "[]")
-}
+// const initialState = {
+//     productList: [],
+//     productsInCart: []
+// }
 
-export default function cartReducer(state = initialState, action) {
+
+export default function rootReducer(state = initialState, action) {
     switch (action.type){
+        case GET_ALL_SHOP_ITEMS:{
+            //console.log(action.payload)
+            return {
+              ...state,
+              productList: action.payload
+            };
+        }
         case ADD_TO_CART:
+            productsInCart.map(product => {
+                if (product.id === action.payload.id) {
+                    return {
+                        ...state,
+                        productsInCart: [...productsInCart, productsInCart[product] = {...product, quantityInCart: quantityInCart + 1}]
+                    }
+                }
+            })
+            return {
+                ...state,
+                productsInCart: state.productsInCart.concat({...action.payload, quantityInCart: 1})
+            };
         case REMOVE_FROM_CART:
-        case INCREASE_QUANTITY_IN_CART:
-        case DECREASE_QUANTITY_IN_CART:
-        case NO_STOCK:
-            return {productsInCart: action.newCart};
-        default: 
-            return state;
+            return {
+                ...state,
+                productsInCart: state.productsInCart.filter(product => product.id !== action.id)
+            };
+        default: return state;
     }
-}
+} */
+
+// export default function rootReducer(state = initialState, action) {
+//     switch (action.type){
+//         case GET_ALL_SHOP_ITEMS:{
+//             //console.log(action.payload)
+//             return {
+//               ...state,
+//               productList: action.payload
+//             };
+//         }
+//         case ADD_TO_CART:
+//             productsInCart.map(product => {
+//                 if (product.id === action.payload.id) {
+//                     return {
+//                         ...state,
+//                         productsInCart: [...productsInCart, productsInCart[product] = {...product, quantityInCart: quantityInCart + 1}]
+//                     }
+//                 }
+//             })
+//             return {
+//                 ...state,
+//                 productsInCart: state.productsInCart.concat({...action.payload, quantityInCart: 1})
+//             };
+//         case REMOVE_FROM_CART:
+//             return {
+//                 ...state,
+//                 productsInCart: state.productsInCart.filter(product => product.id !== action.id)
+//             };
+//         default: return state;
+//     }
+// }
+

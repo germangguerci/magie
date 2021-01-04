@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import "./styles/homeStore.css";
 import { Link } from "react-router-dom";
 import SearchBar from './searchbar'
