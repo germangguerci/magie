@@ -9,7 +9,7 @@ const ProductList = ({product}) => {
         <Grid item xs={12} sm={8}>
           <Grid container spacing={5}>
             {product && product.map((product) =>{return (
-              <Grid key={product.id} item xs={12} sm={4}> 
+              <Grid key={product.id} item xs={12} sm={6} md={4}> 
                 <ItemCard key={product.id} product={product} />
               </Grid>)
             })}
@@ -17,9 +17,6 @@ const ProductList = ({product}) => {
           </Grid>
         <Grid item xs={false} sm={2} />
       </Grid>
-/* {      <div className="d-flex flex-wrap justify-content-center">
-        {product && product.map((product) => (<ItemCard key={product.id} product={product} />))}
-      </div>} */
   );
 };
 

@@ -33,7 +33,6 @@ const HomeStore = (props) => {
         setProduct(res.data);
       });
       setTimeout(() => {setLoading(false)}, 2000);
-      console.log(cat)
       getCategoryChilds(cat).then((res) => {
         setCategory(res.data);
       })
@@ -48,7 +47,6 @@ const HomeStore = (props) => {
         handlerSearch(name)
       }
       getCategorys.then((res) => {
-        console.log(res.data)
         setCategory(res.data);
       });
     }
