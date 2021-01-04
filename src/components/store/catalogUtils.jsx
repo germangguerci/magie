@@ -9,10 +9,25 @@ export const api = new WooCommerceRestApi({
     version: "wc/v3"
   });
   
+
+  // parent: 57
+
+
+  // PARENTS
+  // Clothing -> 57
+  // tops -> 71
+  // UNDER -> 76
+
+  // accesorios 60
+  // hodies 60
+
+  // deco  79
 export const getProducts = api.get("products",{per_page: 100 ,status: "publish"});
 
-export const getCategorys = api.get("products/categories",{per_page: 100 , order: "asc"});
+export const getCategorys = api.get("products/categories",{per_page: 100, parent: 0 ,hide_empty: true});
 
 export const getItemByCat = (id) => api.get("products",{status: "publish",per_page: 100, category: id})
 
 export const getItemByName = (name) => api.get("products",{status: "publish",per_page: 100, search: name})
+
+export const getCategoryChilds = (id) => api.get("products/categories",{per_page: 100, parent: id,hide_empty: true});

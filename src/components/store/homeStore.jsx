@@ -1,11 +1,11 @@
 import React,{useState,useEffect} from "react";
-import Pagination from "./pagination";
+import Pages from "./pagination";
 import Categoria from "./categories";
 import ProductList from "./productList";
 import { useParams } from "react-router-dom";
 import Spinner from './loading'
 import "./styles/homeStore.css";
-import {getProducts, getCategorys, getItemByCat, getItemByName} from './catalogUtils'
+import {getProducts, getCategorys, getItemByCat, getItemByName, getCategoryChilds} from './catalogUtils'
 
 
 // API
@@ -17,7 +17,7 @@ const HomeStore = (props) => {
   const [product, setProduct] = useState([]);
   const [category,setCategory] = useState([]);
   const [currentPage,setCurrentPage ] = useState (1);
-  const [productsEachPage] = useState(8);
+  const [productsEachPage] = useState(9);
   const [filter, setFilter] = useState(false);
   const { cat } = useParams();
   const { match: { params: { name }}} = props;
@@ -33,6 +33,9 @@ const HomeStore = (props) => {
         setProduct(res.data);
       });
       setTimeout(() => {setLoading(false)}, 2000);
+      getCategoryChilds(cat).then((res) => {
+        setCategory(res.data);
+      })
     } 
     else {
       if(!name){
@@ -43,11 +46,11 @@ const HomeStore = (props) => {
       else{
         handlerSearch(name)
       }
-
+      getCategorys.then((res) => {
+        setCategory(res.data);
+      });
     }
-    getCategorys.then((res) => {
-      setCategory(res.data);
-    });
+
     // eslint-disable-next-line
   }, [filter]);
    
@@ -82,7 +85,10 @@ const HomeStore = (props) => {
   const indexOfLastPost = currentPage * productsEachPage;
   const indexOfFirstPost = indexOfLastPost - productsEachPage;
   const currentPosts = product.slice(indexOfFirstPost, indexOfLastPost);
-
+  const pageNumbers = []
+  for(let i = 1; i <= Math.ceil(product.length / productsEachPage); i++){
+    pageNumbers.push(i)
+  }
 
   return (
     <>
@@ -94,7 +100,7 @@ const HomeStore = (props) => {
           {loading ? <Spinner /> : <ProductList product={currentPosts} /> }
         </div>
         <div className="d-flex justify-content-center">
-          <Pagination postsPerPage={productsEachPage} totalPosts={product.length} paginate={paginate}/>
+          <Pages totalPages={pageNumbers.length} paginate={paginate}/>
         </div> 
     </div>
   </>

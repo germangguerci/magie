@@ -21,11 +21,11 @@ const api = new WooCommerceRestApi({
 
 export const getAllShopItems = () =>{
     return function(dispatch){
-        return api.get("products",{per_page: 100 ,status: "publish",})
+        return api.get("products",{per_page: 9, featured: true ,status: "publish",})
         .then((response) => {
           dispatch({
             type: GET_ALL_SHOP_ITEMS,
-            payload: response.data.length,
+            payload: response.data,
         })
         })
         
@@ -55,7 +55,7 @@ export const getItemsPerPage = (pages,page) =>{
 
 export const getAllCategories = () =>{
   return function(dispatch){
-      return api.get("products/categories",{per_page: 100 , order: "asc"})
+      return api.get("products/categories",{parent: 0 , hide_empty: true ,order: "asc"})
       .then((response) => {
         dispatch({
           type: GET_CATEGORIES_SHOP,
