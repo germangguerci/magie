@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography'
 import {getToken} from '../../redux/LoginReducer/actions'
 import {useDispatch} from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+
 
 
 const validationSchema = yup.object({
@@ -64,6 +66,18 @@ const WithMaterialUI = ({onClose}) => {
 
   const classes = useStyles();
 
+  const signUpModal = () => {
+    console.log("this works")
+    return (
+      <div>
+        <span>hO</span>
+      <Modal open={() => {return true}} onClose={null}>
+        <span>Holis</span>
+      </Modal>
+      </div>
+    )
+  }
+
   return (
     <div className={classes.formcontainer}>
         <Avatar className={classes.avatar}>
@@ -99,7 +113,7 @@ const WithMaterialUI = ({onClose}) => {
         </Button>
       </form>
       <div className={classes.signUp}>
-        <Link href="#" variant="body2">
+        <Link variant="body2" to="/createcustomer" href="/createcustomer">
           {"Don't have an account? Sign Up"}
         </Link>
       </div>
