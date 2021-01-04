@@ -4,7 +4,9 @@ const bodyParser = require('body-parser');
 
 const mercadopago = require('mercadopago');
 
-app.use(bodyParser.urlencoded({ extended: false }))
+  app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(bodyParser.json());
 
 app.use(function(req, res, next) {  
   res.header('Access-Control-Allow-Origin', req.headers.origin);
@@ -13,30 +15,32 @@ app.use(function(req, res, next) {
 });
 
 mercadopago.configure({
-    access_token: 'TEST-1294034537296050-122216-b6f75add24d60a1ee8d7d72a9f7b0953-184851111'
+    access_token: 'TEST-1335658861277365-123120-9be6c87d563467b9d0b9c9c2b63b16df-694878249'
 });
 
 app.post('/checkout', (req, res) => {
   console.log("ENTRE A CHECKOUT");
-  console.log(req);
-  res.send(console.log("REQUEST POST 3001: ", req.body.items))
-  // console.log("respuesta post 3001: ", res);
-  // let items = req.body.productsInCart.forEach(product => {
-  //   return {
-  //       title: product.name,
-  //       unit_price: parseInt(product.price),
-  //       quantity: product.quantityInCart
-  //   }
-  // })
-  let preference = {items: req.body.items};
+  const items = JSON.parse(req.body.items)
+
+  let preference = {
+    items: items,
+    back_urls: {
+      success: "http://localhost:3000/products",
+      failure: "http://localhost:3000/products",
+      pending: "http://localhost:3000/products"
+    },
+    auto_return: "approved"
+  };
     
 
   mercadopago.preferences.create(preference)
     .then(function(response){
       console.log("Entre al preference de la api");
+      console.log("RESPONSE PREFERENCE: ", response.body);
       res.redirect(response.body.init_point);
     })
     .catch(function(error){
+      console.log("entre a error de preference");
       console.log(error);
     });
 });
