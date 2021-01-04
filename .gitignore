@@ -23,5 +23,10 @@ yarn-debug.log*
 yarn-error.log*
 .eslintcache
 .eslintcache
+<<<<<<< HEAD
+.eslintcache
+.eslintcache
+=======
+>>>>>>> login
 .eslintcache
 .eslintcache
