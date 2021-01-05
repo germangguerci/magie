@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Social = ({ color }) => {
+const Social = () => {
   const classes = useStyles();
   const { instagram, facebook, twitter } = socialMedia;
   return (

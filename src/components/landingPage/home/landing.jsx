@@ -4,6 +4,7 @@ import DividerWithText from '../divider/divider'
 import ProductsLanding from '../products/OutStandingProducts'
 import Carrousel from '../carrousel/carrousel'
 import { Grid, Container } from "@material-ui/core";
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 
 
@@ -13,6 +14,8 @@ const LandingPage = () => {
 
 
     return(
+        <>
+        <CssBaseline />
         <Grid container direction="column">
             <Container><div style={{height:"20px"}}></div></Container>
             <Container fixed> 
@@ -24,6 +27,7 @@ const LandingPage = () => {
             <ProductsLanding/>
             <DividerWithText></DividerWithText>
         </Grid>
+        </>
     )
 }
 

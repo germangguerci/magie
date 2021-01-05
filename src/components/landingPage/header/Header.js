@@ -11,13 +11,12 @@ import {useHistory} from 'react-router-dom'
 import { Grid } from "@material-ui/core";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LoginModal from './LoginModal'
-import Modal from '@material-ui/core/Modal';
 
 const useStyles = makeStyles((theme) => ({
     toolbar: {
       borderBottom: `1px solid ${theme.palette.divider}`,
       justifyContent: 'space-between',
-      backgroundColor: "#002984"
+      backgroundColor: theme.palette.primary.color
     },
     toolbarMobile:{
     },
@@ -109,7 +108,7 @@ export default function Header () {
                 </div>
                 <div className={classes.toolbarOptions}>
                     <ShoppingCartIcon/>
-                    <Link className={classes.LinkHome} color="inherit" key="logIn" href='#'>Cart</Link>
+                    <Link className={classes.LinkHome} color="inherit" key="logIn" href='/cart'>Cart</Link>
                 </div>
                 <div className={classes.toolbarOptions}>
                     <AccountCircleIcon/>

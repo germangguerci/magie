@@ -10,18 +10,6 @@ export const api = new WooCommerceRestApi({
   });
   
 
-  // parent: 57
-
-
-  // PARENTS
-  // Clothing -> 57
-  // tops -> 71
-  // UNDER -> 76
-
-  // accesorios 60
-  // hodies 60
-
-  // deco  79
 export const getProducts = api.get("products",{per_page: 100 ,status: "publish"});
 
 export const getCategorys = api.get("products/categories",{per_page: 100, parent: 0 ,hide_empty: true});

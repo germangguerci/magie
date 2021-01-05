@@ -19,9 +19,10 @@ const routes = () => {
             <Route exact path="/products" component={Store} />
             <Route exact path="/products/category/:cat" component={Store} />
             <Route path="/createcustomer" component={CreateCustomer} />  
+            <Route path="/cart" component={Cart} />
             <Route path="/" component={Footer}/>
             {/* ------------------------------------------------------- */} 
-            <Route path="/cart" component={Cart} />
+            
                 {LogOut()}
                 {LogIn()}
         </>
