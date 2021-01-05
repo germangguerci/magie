@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import SignInFormik from '../../Login/SignInFormik';
 import PersonIcon from '@material-ui/icons/Person';
-
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -19,11 +20,20 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        cursor: 'pointer',
+        '&:hover':{
+            textDecoration: "underline"
+        }
         //padding: theme.spacing(1),
     },
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
   }));
 
-const LoginModal = () => {
+export default function LoginModal (props){
       const classes = useStyles();
       const [open, setOpen] = useState(false);
 
@@ -41,11 +51,22 @@ const LoginModal = () => {
                 <PersonIcon/>
                 LogIn
             </div>
-            <Modal open={open} onClose={handleClose} className={classes.paper}>
-                <SignInFormik onClose={handleClose}/>
+            <Modal
+                className={classes.modal}
+                open={open}
+                onClose={handleClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{timeout: 2000,}}>
+                <Fade in={open}>
+                    <div>
+                        <SignInFormik onClose={handleClose}/>
+                    </div>
+                </Fade>
             </Modal>
+{/*             <Modal open={open} onClose={handleClose} className={classes.paper}  >
+                <SignInFormik onClose={handleClose}/>
+            </Modal> */}
         </> 
       )
   }
-
-  export default LoginModal;

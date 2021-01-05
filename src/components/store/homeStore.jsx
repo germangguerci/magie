@@ -94,13 +94,13 @@ const HomeStore = (props) => {
   return (
     <>
     <Grid container justify="center" spacing={3}>
-      <Grid item xs={12} sm={12}>
+        <Grid item xs={12} sm={12}>
           {category && <Categoria filterCat={filterCat} categorys={category}  filter={handlerFilter} onSearch={handlerSearch} onClear={handlerClear}/> }
         </Grid>
         <Grid item xs={12} sm={10} >
           {loading ? <Spinner /> : <ProductList product={currentPosts} /> }
         </Grid>
-        <Grid item xs={12} sm={10}>
+        <Grid item container justify="center">
           <Pages totalPages={pageNumbers.length} paginate={paginate}/>
         </Grid>
         <Container><div style={{height:"20px"}}></div></Container>

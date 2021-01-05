@@ -11,6 +11,7 @@ import {useHistory} from 'react-router-dom'
 import { Grid } from "@material-ui/core";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LoginModal from './LoginModal'
+import Modal from '@material-ui/core/Modal';
 
 const useStyles = makeStyles((theme) => ({
     toolbar: {
@@ -56,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
     LinkHome:{
         '&:hover':{
             color: "inherit",
+            
             }
     },
     
@@ -102,7 +104,8 @@ export default function Header () {
         return (
             <div className={classes.toolbarOptionsDiv}>
                 <div className={classes.toolbarOptions}>
-                  {LoginModal()}
+                  {/* {LoginModal()} */}
+                    <LoginModal/>
                 </div>
                 <div className={classes.toolbarOptions}>
                     <ShoppingCartIcon/>
@@ -157,9 +160,6 @@ export default function Header () {
                 </Drawer>
                 <div className={classes.logoContainer}>
                     <StorefrontIcon fontSize="default"/>
-                    <Typography variant="h6" className={classes.toolbarTitle}>
-                        Magie-Shop
-                    </Typography>
                 </div>
                 {RightButtons()}
                 
