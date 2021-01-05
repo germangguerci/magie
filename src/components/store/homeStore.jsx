@@ -72,7 +72,7 @@ const HomeStore = (props) => {
   const handlerSearch = (search) => {
     setCurrentPage(1);
     setLoading(true);
-    getItemByName(search).then((res) => { console.log(res.data) ; setProduct(res.data)})
+    getItemByName(search).then((res) => {setProduct(res.data)})
       .catch( err => console.log( err ) );
     setTimeout(() => {setLoading(false)}, 2000);
   }
