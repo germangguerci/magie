@@ -14,7 +14,7 @@ export default function rootReducer(state = initialState, action) {
         case GET_ALL_SHOP_ITEMS:{
             return {
               ...state,
-              totalProducts: action.payload,
+              productList: action.payload,
             };
         }
         case GET_PRODUCTS_PER_PAGE:{

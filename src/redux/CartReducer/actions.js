@@ -1,4 +1,3 @@
-import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
 
 export const GET_ALL_SHOP_ITEMS = "getAllShopItems";
 export const ADD_TO_CART = "addToCart";
