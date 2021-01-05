@@ -4,13 +4,13 @@ import { Typography, AppBar, IconButton, Drawer, MenuItem, Container } from '@ma
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import StorefrontIcon from '@material-ui/icons/Storefront';
-import PersonIcon from '@material-ui/icons/Person';
 import MenuIcon from '@material-ui/icons/Menu';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {Link as RouterLink} from 'react-router-dom';
 import {useHistory} from 'react-router-dom'
 import { Grid } from "@material-ui/core";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import LoginModal from './LoginModal'
 
 const useStyles = makeStyles((theme) => ({
     toolbar: {
@@ -102,8 +102,7 @@ export default function Header () {
         return (
             <div className={classes.toolbarOptionsDiv}>
                 <div className={classes.toolbarOptions}>
-                    <PersonIcon/>
-                    <Link className={classes.LinkHome} color="inherit" key="logIn" href='#'>LogIn</Link>
+                  {LoginModal()}
                 </div>
                 <div className={classes.toolbarOptions}>
                     <ShoppingCartIcon/>

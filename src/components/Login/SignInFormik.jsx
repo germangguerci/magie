@@ -2,9 +2,16 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Link from '@material-ui/core/Link'
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography'
 import {getToken} from '../../redux/LoginReducer/actions'
 import {useDispatch} from 'react-redux'
+import { makeStyles } from '@material-ui/core/styles';
+
+
 
 const validationSchema = yup.object({
   email: yup
@@ -18,7 +25,7 @@ const validationSchema = yup.object({
 });
 
 
-const WithMaterialUI = () => {
+const WithMaterialUI = ({onClose}) => {
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -28,13 +35,45 @@ const WithMaterialUI = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       dispatch(getToken(values.email, values.password));
-      setTimeout(function(){ window.location.reload(); }, 2000);
+      setTimeout(function(){onClose()}, 500);
     },
   });
 
+  const useStyles = makeStyles((theme) => ({
+    form: {
+      backgroundColor: theme.palette.background.paper,
+      borderRadius: theme.shape.borderRadius,
+      padding: theme.spacing(1),
+      marginTop: theme.spacing(2),
+    },
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: theme.palette.secondary.main,
+    },
+    formcontainer: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      backgroundColor: theme.palette.grey[200],
+      borderRadius: theme.shape.borderRadius,
+      padding: theme.spacing(1)
+    },
+    signUp:{
+      padding: theme.spacing(2),
+    }
+  }))
+
+  const classes = useStyles();
+
   return (
-    <div>
-      <form onSubmit={formik.handleSubmit}>
+    <div className={classes.formcontainer}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+      <form onSubmit={formik.handleSubmit} className={classes.form}>
         <TextField
           fullWidth
           id="email"
@@ -60,6 +99,11 @@ const WithMaterialUI = () => {
           Submit
         </Button>
       </form>
+      <div className={classes.signUp}>
+        <Link variant="body2" to="/createcustomer" href="/createcustomer">
+          {"Don't have an account? Sign Up"}
+        </Link>
+      </div>
     </div>
   );
 };
