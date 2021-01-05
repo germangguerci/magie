@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.primary.main,
     width: `100%`,
+    bottom: 0,
     position: "relative",
     overflow: "hidden",
     marginTop: "6em",
