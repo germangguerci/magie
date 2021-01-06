@@ -60,7 +60,3 @@ app.post('/checkout', (req, res) => {
       console.log(error);
     });
 });
-
-app.listen(3001, () => {
-    console.log("Server on port 3001");
-});

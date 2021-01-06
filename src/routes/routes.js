@@ -1,7 +1,7 @@
 import {Route} from 'react-router-dom';
 import Store from '../components/store/homeStore';
 import React from 'react';
-import {CreateCustomer} from '../components/Customer/CreateCustomer.jsx'
+import CreateCustomer from '../components/Customer/CreateCustomer.jsx'
 import Cart from '../components/Cart/Cart';
 import LandingPage from '../components/landingPage/home/landing'
 import {LogOut, LogIn} from './PrivateRoutes'
@@ -24,9 +24,7 @@ const routes = () => {
             <Route path="/cart" component={Cart} />
             <Route path="/" component={Footer}/>
             {/* ------------------------------------------------------- */} 
-            
                 {LogOut()}
-                {LogIn()}
         </>
     )
     
