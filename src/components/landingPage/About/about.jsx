@@ -7,27 +7,24 @@ import Info from "./infoAbout";
 
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-      
-      '& > *': {
-        margin: theme.spacing(1),
-        width: theme.spacing(16),
-        height: theme.spacing(16),
-      },
+    container:{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      minHeight:"76vh",
+      marginTop:"auto",
+
     },
     Paper: {
         display: 'flex',
         backgroundColor: theme.palette.primary.light ,
-        height: "21rem",
-        marginTop: "6rem",
-        marginBottom: "0.5rem",
+        height: "20rem",
+        padding: "0 2rem 0 2rem",
         borderRadius: "20px",
         justifyContent: "center",
         alignItems: "center",
         '@media (min-width:700px)': {
           height: "30rem",
-          marginTop: "8rem",
-          marginBottom: "8rem",
           fontSize: '30rem',
       },
     },
@@ -37,7 +34,7 @@ export default function About() {
   return (
     <Fragment>
       <CssBaseline />
-      <Container >
+      <Container className={classes.container} >
         <Paper component="div" elevation={7} className={classes.Paper}>
           <Info />
         </Paper>
