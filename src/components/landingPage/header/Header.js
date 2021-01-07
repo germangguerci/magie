@@ -105,7 +105,7 @@ export default function Header () {
                 </div>
                 <div className={classes.toolbarOptions}>
                     <ShoppingCartIcon/>
-                    <Link className={classes.LinkHome} color="inherit" key="logIn" href='#'>Cart</Link>
+                    <Link className={classes.LinkHome} color="inherit" key="logIn" href='/cart'>Cart</Link>
                 </div>
             </div>
         )

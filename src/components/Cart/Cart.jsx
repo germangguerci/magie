@@ -1,36 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import styles from './styles/Cart.module.css';
-
-import CartItem from './CartItem';
+import DesktopCart from './DesktopCart';
+import MobileCart from './MobileCart';
 
 const Cart = () => {
-    const productsInCart = useSelector(state => state.cartReducer.productsInCart);
+    const [state, setState] = useState({
+        mobileView: false
+    })
+    const { mobileView } = state;
 
-    const items = productsInCart.map(product => {
-        return {
-            title: product.name,
-            unit_price: parseFloat(product.price),
-            quantity: product.quantityInCart
+    useEffect(() => {
+        const setResponsiveness = () => {
+          return window.innerWidth < 900
+            ? setState((prevState) => ({ ...prevState, mobileView: true }))
+            : setState((prevState) => ({ ...prevState, mobileView: false }));
         };
-    });
+        setResponsiveness();
+        window.addEventListener("resize", () => setResponsiveness());
+      }, []);
 
-    return (
-        <div className={styles.cart} >
-            <h1>Cart</h1>
-            <div className={styles.productsIncart} >
-                { productsInCart.length ? productsInCart.map(product => <CartItem product={product} />) 
-                : <p>There's nothing in the cart! Go buy something!</p>
-                }
-                <h2>Total: ${productsInCart.reduce((acc, product) => acc + product.price * product.quantityInCart, 0)}</h2>               
-                <form action="http://localhost:3001/checkout" method="POST" >
-                    <input type="hidden" name="items" value={JSON.stringify(items)} />
-                    <input type="submit" className={styles.payButton} value="Pay" />
-                </form>                
-            </div>
-        </div>
-    )
+    return mobileView ? <MobileCart mobileView={mobileView} /> : <DesktopCart />;
+
+
+    // return (
+    //     <div className={styles.cart} >
+    //         <h1>Cart</h1>
+    //         <div className={styles.productsIncart} >
+    //             { productsInCart.length ? productsInCart.map(product => <CartItem product={product} />) 
+    //             : <p>There's nothing in the cart! Go buy something!</p>
+    //             }
+    //             <h2>Total: ${productsInCart.reduce((acc, product) => acc + product.price * product.quantityInCart, 0)}</h2>               
+    //             <form action="http://localhost:3001/checkout" method="POST" >
+    //                 <input type="hidden" name="items" value={JSON.stringify(items)} />
+    //                 <input type="submit" className={styles.payButton} value="Pay" />
+    //             </form>                
+    //         </div>
+    //     </div>
+    // )
 }
 
 export default Cart;
@@ -87,3 +94,10 @@ export default Cart;
 // -H 'Authorization: Bearer TEST-1294034537296050-122216-b6f75add24d60a1ee8d7d72a9f7b0953-184851111' \
 // "https://api.mercadopago.com/users/test_user" \
 // -d '{"site_id":"MLA"}'
+
+/* 
+    Tarjetas de Prueba:
+    5031 7557 3453 0604 - 11/25 - 123
+    4509 9535 6623 3704 - 11/25 - 123
+    3711 803032 57522   - 11/25 - 1234
+*/
