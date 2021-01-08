@@ -35,9 +35,15 @@ const useStylesMobile = makeStyles(theme => ({
     payButton: {
         marginBottom: "15px",
         padding: "5px 20px",
-        backgroundColor: "rgba(0, 0, 0, .8)",
-        color: "white",
-        boxShadow: "1px 7px 15px rgba(0, 0, 0, .5)"
+        backgroundColor: "white",
+        color: "black",
+        boxShadow: "1px 7px 15px rgba(0, 0, 0, .5)",
+        fontWeight: "bold",
+        transition: "color 1s, backgroundColor 1s",
+        "&:hover": {
+            backgroundColor: "black",
+            color: "white",
+        }
     },
     headList: {
         display: "flex",
@@ -46,8 +52,29 @@ const useStylesMobile = makeStyles(theme => ({
     },
     titles: {
         padding: "0px 44px",
+        [theme.breakpoints.down('sm')]: {
+            fontSize: ".8rem", 
+        }
     },
-    
+    productTitle: {
+        marginBottom: 0,
+        textAlign: "center",
+    },
+    quantityTitle: {
+        marginBottom: 0,
+        textAlign: "center",
+    },
+    subtotalTitle: {
+        marginBottom: 0,
+        textAlign: "center",
+    },
+    removeTitle: {
+        marginBottom: 0,
+    },
+    separator: {
+        minWidth: "50px",
+        
+    }
 }));
 
 const MobileCart = ({mobileView}) => {
@@ -73,12 +100,14 @@ const MobileCart = ({mobileView}) => {
                 <Grid item xs={1} sm={1} />
                 <Grid container xs={10} sm={10} className={stylesMobile.titles} >
                     <Grid item xs={2} sm={2} />
-                    <Grid item xs={2} sm={2} className={stylesMobile.productTitle} ><Typography align="center" >Product</Typography></Grid>
-                    <Grid item xs={2} sm={2} className={stylesMobile.quantityTitle} ><Typography align="center" >Quantity</Typography></Grid>
                     <Grid item xs={1} sm={1} />
-                    <Grid item xs={2} sm={2} className={stylesMobile.subtotalTitle} ><Typography align="center" >Subtotal</Typography></Grid>
+                    <Grid item xs={2} sm={2} className={stylesMobile.productTitle} ><span >Product</span></Grid>
                     <Grid item xs={1} sm={1} />
-                    <Grid item xs={1} sm={1} className={stylesMobile.removeTitle} ><Typography align="center" >Remove</Typography></Grid>    
+                    <Grid item xs={1} sm={1} className={stylesMobile.quantityTitle} ><span >Quantity</span></Grid>
+                    <Grid className={stylesMobile.separator} item xs={1} sm={1} />
+                    {!mobileView && <Grid item xs={1} sm={1} className={stylesMobile.subtotalTitle} ><span >Subtotal</span></Grid>}
+                    {!mobileView && <Grid  item xs={1} sm={1} />}
+                    <Grid item xs={1} sm={1} className={stylesMobile.removeTitle} ><span  >Remove</span></Grid>
                 </Grid>                    
                 <Grid item xs={1} sm={1} />
             </Grid>
@@ -96,7 +125,7 @@ const MobileCart = ({mobileView}) => {
                 </Grid>
             </Toolbar>
             <div className={stylesMobile.payPart} >
-                <Typography className={stylesMobile.total} >Total: ${ productsInCart
+                <Typography variant="h4" className={stylesMobile.total} >Total: ${ productsInCart
                 .reduce((acc, product) => acc + product.price * product.quantityInCart, 0)}
                 </Typography>
                 <form action="http://localhost:3001/checkout" method="POST" >

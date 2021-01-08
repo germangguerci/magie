@@ -18,6 +18,10 @@ const useStyles = makeStyles(theme => ({
         alignSelf: "center",
         height: "fit-content",
         justifyContent: "center",
+        textAlign: "center",
+        [theme.breakpoints.down('sm')]: {
+            fontSize: ".8rem", 
+        },
     },
     removeButtonDiv: {
         display: "flex",
@@ -29,11 +33,18 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         border: "none",
         background: "none",
+        [theme.breakpoints.down('sm')]: {
+            fontSize: ".8rem", 
+        },
     },
     totalPriceItem: {
         display: "flex",
         alignSelf: "center",
         justifyContent: "center",
+        textAlign: "center",
+        [theme.breakpoints.down('sm')]: {
+            fontSize: ".8rem", 
+        },
     },
     incDecQuantityInCart: {
         border: "none",
@@ -57,7 +68,14 @@ const useStyles = makeStyles(theme => ({
         maxHeight: "fit-content",
         alignItems: "center",
         justifyContent: "center",
+        minWidth: "50px",
+        [theme.breakpoints.down('sm')]: {
+            fontSize: ".8rem", 
+        },
     },
+    separator: {
+        minWidth: "30px",
+    }
 }));
 
 function CartItem({product, mobileView}) {
@@ -70,11 +88,12 @@ function CartItem({product, mobileView}) {
                 <Grid item xs={2} sm={2} md={2} lg={2} xl={2} >
                     <Link  ><img className={styles.imageItem} src={product.img} alt={product.name} /></Link>
                 </Grid>
+                {mobileView && <Grid item xs={1} sm={1} />}
                 <Grid item xs={2} sm={2} md={2} lg={2} xl={2} className={styles.productName} >
-                    <Typography className={styles.allFonts} align="center" >{product.name}</Typography>
+                    <span className={styles.productName} align="center" >{product.name}</span>
                 </Grid>
-                
-                <Grid item xs={2} sm={2} md={2} lg={2} xl={2} className={`${styles.quantityContainer} ${styles.allFonts}`} >
+                <Grid item xs={1} sm={1} />
+                <Grid item xs={1} sm={1} md={1} lg={1} xl={1} className={`${styles.quantityContainer} ${styles.allFonts}`} >
                     <span className={styles.quantity}>
                         <button className={styles.incDecQuantityInCart} onClick={() => dispatch(increaseQuantityInCart(product.id))}>	
                         &#708;
@@ -87,13 +106,9 @@ function CartItem({product, mobileView}) {
                 </Grid>
                 <Grid item xs={1} sm={1} md={1} lg={1} xl={1} />
                 {!mobileView && <Grid item xs={1} sm={1} md={1} lg={1} xl={1} className={styles.totalPriceItem} >
-                               <Typography align="center" >${product.price}</Typography>
-                               </Grid>
-                }
-                <Grid item xs={2} sm={2} md={2} lg={2} xl={2} className={styles.totalPriceItem} >
-                    <Typography align="center" >${product.price * product.quantityInCart}</Typography>
-                </Grid>
-                <Grid item xs={1} sm={1} md={1} lg={1} xl={1} />
+                    <span >${product.price * product.quantityInCart}</span>
+                </Grid>}
+                {!mobileView && <Grid className={styles.separator} item xs={1} sm={1} md={1} lg={1} xl={1} />}
                 <Grid item xs={1} sm={1} md={1} lg={1} xl={1} className={styles.removeButtonDiv} >
                     <button className={styles.removeButton} onClick={() => dispatch(removeFromCart(product.id))} >
                         X

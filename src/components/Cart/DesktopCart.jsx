@@ -35,9 +35,15 @@ const useStylesDesktop = makeStyles(theme => ({
     payButton: {
         marginBottom: "15px",
         padding: "5px 20px",
-        backgroundColor: "rgba(0, 0, 0, .8)",
-        color: "white",
-        boxShadow: "1px 7px 15px rgba(0, 0, 0, .5)"
+        backgroundColor: "white",
+        color: "black",
+        boxShadow: "1px 7px 15px rgba(0, 0, 0, .5)",
+        fontWeight: "bold",
+        transition: "color 1s, backgroundColor 1s",
+        "&:hover": {
+            backgroundColor: "black",
+            color: "white",
+        }
     },
     headList: {
         display: "flex",
@@ -45,7 +51,25 @@ const useStylesDesktop = makeStyles(theme => ({
         marginTop: "1.3%",
     },
     titles: {
+        display: "flex",
+        alignContent: "center",
         padding: "0px 44px",
+    },
+    productTitle: {
+        marginBottom: 0,
+        textAlign: "center",
+    },
+    quantityTitle: {
+        marginBottom: 0,
+        textAlign: "center",
+    },
+    subtotalTitle: {
+        marginBottom: 0,
+        textAlign: "center",
+    },
+    removeTitle: {
+        marginBottom: 0,
+        textAlign: "center",
     }
 }));
 
@@ -72,14 +96,14 @@ const DesktopCart = () => {
             <Grid container className={stylesDesktop.headList} >
                 <Grid item sm={1} md={1} lg={1} xl={1} />
                 <Grid container sm={10} md={10} lg={10} xl={10} className={stylesDesktop.titles} >
-                    <Grid item sm={2} md={2} lg={2} xl={2} />
-                    <Grid item sm={2} md={2} lg={2} xl={2} className={stylesDesktop.productTitle} ><Typography align="center" >Product</Typography></Grid>
-                    <Grid item sm={2} md={2} lg={2} xl={2} className={stylesDesktop.quantityTitle} ><Typography align="center" >Quantity</Typography></Grid>
-                    <Grid item sm={1} md={1} lg={1} xl={1} />
-                    <Grid item sm={1} md={1} lg={1} xl={1} className={stylesDesktop.unitPriceTitle} ><Typography align="center" >Price</Typography></Grid>                    
-                    <Grid item sm={2} md={2} lg={2} xl={2} className={stylesDesktop.subtotalTitle} ><Typography align="center" >Subtotal</Typography></Grid>
-                    <Grid item sm={1} md={1} lg={1} xl={1} />
-                    <Grid item sm={1} md={1} lg={1} xl={1} className={stylesDesktop.removeTitle} ><Typography align="center" >Remove</Typography></Grid>    
+                    <Grid item xs={2} sm={2} />
+                    <Grid item xs={2} sm={2} className={stylesDesktop.productTitle} ><span >Product</span></Grid>
+                    <Grid item xs={1} sm={1} />
+                    <Grid item xs={1} sm={1} className={stylesDesktop.quantityTitle} ><span >Quantity</span></Grid>
+                    <Grid item xs={1} sm={1} />
+                    <Grid item xs={1} sm={1} className={stylesDesktop.subtotalTitle} ><span >Subtotal</span></Grid>
+                    <Grid item xs={1} sm={1} />
+                    <Grid item xs={1} sm={1} className={stylesDesktop.removeTitle} ><span  >Remove</span></Grid>
                 </Grid>                    
                 <Grid item sm={1} md={1} lg={1} xl={1} />
             </Grid>
