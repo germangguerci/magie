@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 
 /****************************** Styles ******************************/ 
-import { Link, Container, Typography, Grid } from '@material-ui/core';
+import { Link, Container, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 
 /****************************** Actions ******************************/ 

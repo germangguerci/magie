@@ -19,15 +19,14 @@ mercadopago.configure({
 });
 
 app.post('/checkout', (req, res) => {
-  console.log("ENTRE A CHECKOUT");
   const items = JSON.parse(req.body.items)
 
   let preference = {
     items: items,
     back_urls: {
-      success: "http://localhost:3000/products",
-      failure: "http://localhost:3000/products",
-      pending: "http://localhost:3000/products"
+      success: "http://localhost:3000/",
+      failure: "http://localhost:3000/",
+      pending: "http://localhost:3000/"
     },
     auto_return: "approved"
   };

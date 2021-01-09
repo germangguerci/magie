@@ -9,8 +9,7 @@ import { Grid, Container } from "@material-ui/core";
 
 
 const LandingPage = () => {
-
-
+    window.location.search.includes("&status=approved&") && localStorage.setItem("Cart", "");
 
     return(
         <Grid container direction="column">
