@@ -35,7 +35,13 @@ const WithMaterialUI = ({onClose}) => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       dispatch(getToken(values.email, values.password));
-      setTimeout(function(){onClose()}, 500);
+      setTimeout(function(){
+        if(window.localStorage.getItem("loggedin")){
+          console.log("Logged in, user id: ", window.localStorage.getItem("userId"))
+          onClose();
+        }
+      }, 500);
+
     },
   });
 

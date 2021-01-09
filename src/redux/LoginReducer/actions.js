@@ -9,11 +9,13 @@ export const getToken = (email, password) => (dispatch, getState) => {
             var token = response.data.data.token;
             window.localStorage.setItem("tokenkey", token);
             window.localStorage.setItem("loggedin", true);
-            //dispatch(logIn({loggedin: "true"}));
+            window.localStorage.setItem("userId", response.data.data.id);
+            return response.data.succes
         }
         else {
+            console.log("Error login", response)
             window.alert(response.data.message)
+            return response.data.success
         } 
     })
-    .catch(response => window.alert(response.data.message));
 }
