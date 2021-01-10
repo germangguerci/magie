@@ -5,10 +5,12 @@ import { Toolbar, Typography, Grid } from '@material-ui/core';
 import { useStylesDesktop } from './styles';
 
 import CartItem from './CartItem';
+import ButtonLogIn from './ButtonLogIn';
 
 const DesktopCart = () => {
     const productsInCart = useSelector(state => state.cartReducer.productsInCart);
     const stylesDesktop = useStylesDesktop();
+    const loggedIn = JSON.parse(localStorage.getItem("loggedin" ))
 
     const items = productsInCart.map(product => {
         return {
@@ -56,15 +58,16 @@ const DesktopCart = () => {
                     <Grid item sm={1} lg={1} md={1} xl={1} />
                 </Grid>
             </Toolbar>
-            { productsInCart.length >= 1 && <div className={stylesDesktop.payPart} >
+            { loggedIn ? (productsInCart.length >= 1 && <div className={stylesDesktop.payPart} >
                                                 <Typography variant="h3" key="total" className={stylesDesktop.total} >Total: ${ productsInCart
                                                 .reduce((acc, product) => acc + product.price * product.quantityInCart, 0) }
                                                 </Typography>
-                                                <form action="http://localhost:3001/checkout" method="POST"  >
+                                                <form action="http://localhost:3000/checkout" method="POST"  >
                                                     <input key="items" type="hidden" name="items" value={JSON.stringify(items)} />
                                                     <input key="submit" type="submit" name="submit" value="PROCEED TO CHECKOUT" className={stylesDesktop.payButton} />
                                                 </form>
-                                            </div>
+                                            </div>)
+                        : productsInCart.length && <ButtonLogIn />
             }
         </div>
         

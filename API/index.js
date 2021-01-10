@@ -34,6 +34,7 @@ mercadopago.configure({
     access_token: 'TEST-1335658861277365-123120-9be6c87d563467b9d0b9c9c2b63b16df-694878249'
 });
 
+
 app.post('/checkout', (req, res) => {
   const items = JSON.parse(req.body.items)
 
@@ -56,3 +57,4 @@ app.post('/checkout', (req, res) => {
       console.log(error);
     });
 });
+

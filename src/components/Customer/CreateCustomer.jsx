@@ -81,12 +81,12 @@ const useStyles = makeStyles((theme) => ({
 const CreateCustomer = () => {
   const formik = useFormik({
     initialValues: {
-      email: 'foobar@example.com',
-      first_name: 'Pedro',
-      last_name: 'Caballero',
-      user_name: 'pedrocaballero',
+      email: '',
+      first_name: '',
+      last_name: '',
+      user_name: '',
       company: '',
-      adress_1: '969 market',
+      adress_1: '',
       adress_2: '',
       city: '',
       state: '',
