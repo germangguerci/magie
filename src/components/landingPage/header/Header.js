@@ -16,16 +16,18 @@ const useStyles = makeStyles((theme) => ({
     toolbar: {
       borderBottom: `1px solid ${theme.palette.divider}`,
       justifyContent: 'space-between',
-      backgroundColor: theme.palette.primary.color
+      backgroundColor: theme.palette.background.default
     },
     toolbarMobile:{
+        backgroundColor: theme.palette.background.default
     },
     logoContainer:{
         display: 'flex',
         alignItems: 'center',
         flexWrap: 'wrap'
     },
-    toolbarTitle: {
+    backgroundToolbar: {
+      backgroundColor: theme.palette.background.default,  
     },
     toolbarSecondary: {
       justifyContent: 'space-between',
@@ -39,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     toolbarOptionsDiv: {
         display: 'flex',
         flexDirection: 'row',
+        backgroundColor: theme.palette.background.default,
 
     },
     toolbarOptions: {
@@ -46,9 +49,13 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         alignItems: 'center',
         padding: theme.spacing(1),
+        backgroundColor: theme.palette.background.default,
+
     },
     mobileToolbar: {
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        backgroundColor: theme.palette.background.default
+
     },
     driverChoices:{
         padding: "20px 30px",
@@ -179,7 +186,7 @@ export default function Header () {
     return (
         <header>
             <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/>
-            <AppBar position="static" style={{backgroundColor:"#002984"}}>
+            <AppBar position="static" className={classes.backgroundToolbar}>
                 <Container maxWidth="lg"> 
                     {mobileView ? displayMobile() : displayDesktop()}
                 </Container>    

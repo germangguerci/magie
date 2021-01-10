@@ -8,11 +8,19 @@ import {Provider} from 'react-redux';
 import {ThemeProvider, createMuiTheme} from '@material-ui/core/styles'
 
 
-const theme = createMuiTheme({
-  palette: {
-    // type: "dark",
+const theme = createMuiTheme(
+  {
+    palette: {
+      type: 'dark',
+      primary: {
+        main: '#212121',
+      },
+      secondary: {
+        main: '#ffff00'
+      }
+    }
   }
-})
+)  
 
 ReactDOM.render(
 /*   <React.StrictMode> */
