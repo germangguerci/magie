@@ -4,17 +4,19 @@ import { Typography, AppBar, IconButton, Drawer, MenuItem, Container } from '@ma
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import StorefrontIcon from '@material-ui/icons/Storefront';
-import PersonIcon from '@material-ui/icons/Person';
 import MenuIcon from '@material-ui/icons/Menu';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {Link as RouterLink} from 'react-router-dom';
 import {useHistory} from 'react-router-dom'
 import { Grid } from "@material-ui/core";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import LoginModal from './LoginModal'
 
 const useStyles = makeStyles((theme) => ({
     toolbar: {
       borderBottom: `1px solid ${theme.palette.divider}`,
       justifyContent: 'space-between',
+      backgroundColor: theme.palette.primary.color
     },
     toolbarMobile:{
     },
@@ -54,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
     LinkHome:{
         '&:hover':{
             color: "inherit",
+            
             }
     },
     
@@ -100,12 +103,16 @@ export default function Header () {
         return (
             <div className={classes.toolbarOptionsDiv}>
                 <div className={classes.toolbarOptions}>
-                    <PersonIcon/>
-                    <Link className={classes.LinkHome} color="inherit" key="logIn" href='#'>LogIn</Link>
+                  {/* {LoginModal()} */}
+                    <LoginModal/>
                 </div>
                 <div className={classes.toolbarOptions}>
                     <ShoppingCartIcon/>
                     <Link className={classes.LinkHome} color="inherit" key="logIn" href='/cart'>Cart</Link>
+                </div>
+                <div className={classes.toolbarOptions}>
+                    <AccountCircleIcon/>
+                    <Link className={classes.LinkHome} color="inherit" key="logIn" href='#'>Profile</Link>
                 </div>
             </div>
         )
@@ -152,9 +159,6 @@ export default function Header () {
                 </Drawer>
                 <div className={classes.logoContainer}>
                     <StorefrontIcon fontSize="default"/>
-                    <Typography variant="h6" className={classes.toolbarTitle}>
-                        Magie-Shop
-                    </Typography>
                 </div>
                 {RightButtons()}
                 
@@ -175,7 +179,7 @@ export default function Header () {
     return (
         <header>
             <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/>
-            <AppBar position="static">
+            <AppBar position="static" style={{backgroundColor:"#002984"}}>
                 <Container maxWidth="lg"> 
                     {mobileView ? displayMobile() : displayDesktop()}
                 </Container>    

@@ -18,6 +18,7 @@ import { Grid } from "@material-ui/core";
 const useStyles = makeStyles({
     root: {
       maxWidth: 345,
+      width: 245,
       textAlign: "center",
     },
     media: {
@@ -74,6 +75,7 @@ export default function ItemCard ({product}) {
 
     var ItemName = product.name.split(" ").slice(0,2).join(' ');
     return(
+      <Grid item> 
         <Card className={classes.root}>
             <CardHeader title={ItemName}/>
           <CardActionArea>
@@ -85,8 +87,8 @@ export default function ItemCard ({product}) {
           <CardActions className={classes.button} >
             <Button size="small" variant="outlined" onClick={e => handleAddToCart(e)} startIcon={<AddShoppingCartIcon />}> Cart </Button>
           </CardActions>
-        
       </Card>  
+      </Grid>
     )
 }
 

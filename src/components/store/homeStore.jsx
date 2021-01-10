@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Spinner from './loading'
 import "./styles/homeStore.css";
 import {getProducts, getCategorys, getItemByCat, getItemByName, getCategoryChilds} from './catalogUtils'
+import { Grid, Container } from "@material-ui/core";
 
 
 // API
@@ -71,7 +72,7 @@ const HomeStore = (props) => {
   const handlerSearch = (search) => {
     setCurrentPage(1);
     setLoading(true);
-    getItemByName(search).then((res) => { console.log(res.data) ; setProduct(res.data)})
+    getItemByName(search).then((res) => {setProduct(res.data)})
       .catch( err => console.log( err ) );
     setTimeout(() => {setLoading(false)}, 2000);
   }
@@ -92,17 +93,18 @@ const HomeStore = (props) => {
 
   return (
     <>
-    <div className={`firstContainer container col-12 col-lg-10 text-center pb-0 mb-5`}>
-        <div className="mt-5 my-3 mx-0 mx-xl-5 px-xl-5">
+    <Grid container justify="center" spacing={3}>
+        <Grid item xs={12} sm={12}>
           {category && <Categoria filterCat={filterCat} categorys={category}  filter={handlerFilter} onSearch={handlerSearch} onClear={handlerClear}/> }
-        </div>
-        <div className="d-flex justify-content-center">
+        </Grid>
+        <Grid item xs={12} sm={10} >
           {loading ? <Spinner /> : <ProductList product={currentPosts} /> }
-        </div>
-        <div className="d-flex justify-content-center">
+        </Grid>
+        <Grid item container justify="center">
           <Pages totalPages={pageNumbers.length} paginate={paginate}/>
-        </div> 
-    </div>
+        </Grid>
+        <Container><div style={{height:"20px"}}></div></Container>
+    </Grid>
   </>
   );
 };

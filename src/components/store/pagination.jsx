@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Pagination } from '@material-ui/lab';
 import './styles/categorys.css'
 import { makeStyles } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 
 const useStyles = makeStyles((theme) =>({
@@ -30,7 +31,11 @@ export default function Pages({totalPages, paginate}) {
       
     return(
         <>
-        <Pagination count={totalPages} className={classes.selected} shape="rounded" page={page} onChange={handleChange}/>
+        <Grid item>
+            <Grid item xs={12}>
+              <Pagination count={totalPages} className={classes.selected} shape="rounded" page={page} onChange={handleChange}/>
+            </Grid>
+        </Grid>
         </>
     )
 }

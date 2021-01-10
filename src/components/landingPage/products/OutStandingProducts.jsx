@@ -6,18 +6,18 @@ import ItemCard from '../../store/itemCard';
 const ProductsLanding = () => {
     const mainProducts = useSelector(state => state.storeReducer.productList)
     return (
-        <Grid item container justify="center">
-        <Grid item xs={false} sm={2} />
-        <Grid item xs={12} sm={8}>
-          <Grid container spacing={5}>
+      <Grid item container>
+        <Grid item xs={false} sm={1} md={1} />
+        <Grid item xs={12} sm={12} md={10}>
+          <Grid container spacing={3}>
             {mainProducts && mainProducts.map((product) =>{return (
-              <Grid key={product.id} item xs={12} sm={6} md={4}> 
+              <Grid key={product.id} container item justify="center" xs={12} sm={6} md={4}>
                 <ItemCard key={product.id} product={product} />
               </Grid>)
             })}
             </Grid>
           </Grid>
-        <Grid item xs={false} sm={2} />
+          <Grid item xs={false} sm={1} md={1} />
     </Grid>
     )
 }

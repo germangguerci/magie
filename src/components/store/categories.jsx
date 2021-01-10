@@ -3,9 +3,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { Typography, AppBar, IconButton, Drawer, MenuItem, Container } from '@material-ui/core';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
 import { fade } from '@material-ui/core/styles';
 import SearchBar from "./searchbar";
+import AppsIcon from '@material-ui/icons/Apps';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -142,30 +142,49 @@ export default function Categories({categorys, filter, onSearch, onClear, filter
 
 
     const displayMobile = () => {
-        const handleDrawerOpen = () => setState((prevState) => ({ ...prevState, drawerOpen: true }));
-        const handleDrawerClose = () => setState((prevState) => ({ ...prevState, drawerOpen: false }));
-        return (
-            <Toolbar className={classes.mobileToolbar}>
-                <IconButton edge="start" color="inherit" onClick={handleDrawerOpen}> 
-                    <MenuIcon />
-                </IconButton>
-                <Drawer className={classes.drawerChoices} anchor="left" open={drawerOpen} onClose={handleDrawerClose}>
-                    <div>{getDrawerChoices()}</div>
-                </Drawer>
-                {RightButtons()}
-                
-            </Toolbar>
-        )
-    }
+      const handleDrawerOpen = () =>
+        setState((prevState) => ({ ...prevState, drawerOpen: true }));
+      const handleDrawerClose = () =>
+        setState((prevState) => ({ ...prevState, drawerOpen: false }));
+      return (
+        <Toolbar className={classes.mobileToolbar}>
+          <IconButton edge="start" color="inherit" onClick={handleDrawerOpen}>
+            <AppsIcon/>
+          </IconButton>
+          <Drawer
+            className={classes.drawerChoices}
+            anchor="left"
+            open={drawerOpen}
+            onClose={handleDrawerClose}
+          >
+            <div>{getDrawerChoices()}</div>
+          </Drawer>
+          {RightButtons()}
+        </Toolbar>
+      );
+    };
     const getDrawerChoices = () => {
-        return categorys.map((cat,index) => {
+      if (categorys.length) {
+        return categorys.map((cat, index) => {
           return (
-            <Link to={`/products/category/${cat.id}`} href={`/products/category/${cat.id}`} color="inherit" key={index}>
+            <Link
+              to={`/products/category/${cat.id}`}
+              href={`/products/category/${cat.id}`}
+              color="inherit"
+              key={index}
+            >
               <MenuItem>{cat.name}</MenuItem>
             </Link>
           );
         });
-      };
+      } else {
+        return (
+          <Link to={`/products`} href={`/products`} color="inherit">
+            <MenuItem>Back</MenuItem>
+          </Link>
+        );
+      }
+    };
 
 
     return (
