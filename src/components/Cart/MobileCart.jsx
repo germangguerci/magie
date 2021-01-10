@@ -58,13 +58,13 @@ const MobileCart = ({ mobileView }) => {
                     <Grid item xs={1} sm={1} />
                 </Grid>
             </Toolbar>
-            { loggedIn ? (productsInCart.length >= 1 && <div className={stylesDesktop.payPart} >
-                                                <Typography variant="h3" key="total" className={stylesDesktop.total} >Total: ${ productsInCart
+            { loggedIn ? (productsInCart.length >= 1 && <div className={stylesMobile.payPart} >
+                                                <Typography variant="h3" key="total" className={stylesMobile.total} >Total: ${ productsInCart
                                                 .reduce((acc, product) => acc + product.price * product.quantityInCart, 0) }
                                                 </Typography>
                                                 <form action="http://localhost:3000/checkout" method="POST"  >
                                                     <input key="items" type="hidden" name="items" value={JSON.stringify(items)} />
-                                                    <input key="submit" type="submit" name="submit" value="PROCEED TO CHECKOUT" className={stylesDesktop.payButton} />
+                                                    <input key="submit" type="submit" name="submit" value="PROCEED TO CHECKOUT" className={stylesMobile.payButton} />
                                                 </form>
                                             </div>)
                         : productsInCart.length && <ButtonLogIn />
