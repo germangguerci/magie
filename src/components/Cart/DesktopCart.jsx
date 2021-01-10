@@ -52,7 +52,7 @@ const DesktopCart = () => {
                         <hr />
                         { productsInCart.length 
                         ? productsInCart.map(product => <div key={product.id} ><CartItem product={product} /><hr /></div>)
-                        : <Typography variant="h3" >There's nothing in the cart! Go buy something!</Typography>
+                        : <Typography variant="h3" className={stylesDesktop.nothingInCart} >There's nothing in the cart! Go buy something!</Typography>
                         }
                     </Grid>
                     <Grid item sm={1} lg={1} md={1} xl={1} />

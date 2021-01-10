@@ -52,7 +52,7 @@ const MobileCart = ({ mobileView }) => {
                         <hr />
                         { productsInCart.length
                         ? productsInCart.map(product => <div key={product.id} ><CartItem product={product} mobileView={mobileView} /><hr /></div>)
-                        : <Typography variant="h3" >There's nothing in the cart! Go buy something!!</Typography>
+                        : <Typography variant="h3" className={stylesMobile.nothingInCart} >There's nothing in the cart! Go buy something!!</Typography>
                         }
                     </Grid>
                     <Grid item xs={1} sm={1} />

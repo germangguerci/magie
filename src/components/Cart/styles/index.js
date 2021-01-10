@@ -69,6 +69,9 @@ export const useStylesMobile = makeStyles(theme => ({
     separator: {
         minWidth: "50px",
         
+    },
+    nothingInCart: {
+        marginBottom: "64px",
     }
 }));
 
@@ -137,6 +140,9 @@ export const useStylesDesktop = makeStyles(theme => ({
         marginBottom: 0,
         textAlign: "center",
     },
+    nothingInCart: {
+        marginBottom: "64px",
+    }
 }));
 
 export const useStylesCartItem = makeStyles(theme => ({
