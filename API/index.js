@@ -35,15 +35,14 @@ mercadopago.configure({
 });
 
 app.post('/checkout', (req, res) => {
-  console.log("ENTRE A CHECKOUT");
   const items = JSON.parse(req.body.items)
 
   let preference = {
     items: items,
     back_urls: {
-      success: "http://localhost:3000/products",
-      failure: "http://localhost:3000/products",
-      pending: "http://localhost:3000/products"
+      success: "http://localhost:3000/",
+      failure: "http://localhost:3000/",
+      pending: "http://localhost:3000/"
     },
     auto_return: "approved"
   };
@@ -51,12 +50,9 @@ app.post('/checkout', (req, res) => {
 
   mercadopago.preferences.create(preference)
     .then(function(response){
-      console.log("Entre al preference de la api");
-      console.log("RESPONSE PREFERENCE: ", response.body);
       res.redirect(response.body.init_point);
     })
     .catch(function(error){
-      console.log("entre a error de preference");
       console.log(error);
     });
 });

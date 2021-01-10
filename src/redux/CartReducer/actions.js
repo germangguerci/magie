@@ -7,24 +7,13 @@ export const DECREASE_QUANTITY_IN_CART = "decreaseQuantityInCart";
 export const NO_STOCK = "noStock";
 
 export const addToCart = payload => (dispatch, getState) => {
-  const { id, name, price, stock_quantity, stock_status, images } = payload;
-  const availableStock = stock_quantity;
+  const { id, name, price, stock_status, images } = payload;
 
   const newCart = getState().cartReducer.productsInCart.slice();
-  const noStock = newCart.filter(el => el.quantityInCart !== availableStock);
 
-  let flag = false;
-  if (stock_status !== 'instock' || !availableStock) {
+  let itemInCart = false;
+  if (stock_status !== "instock") {
     console.log("name: " + name + " stock_status: " + stock_status);
-    if (noStock.length <= 0) {
-
-    newCart.push({
-      id,
-      name,
-      img: images[0].src,
-    });
-
-  }
 
     dispatch({
       type: NO_STOCK,
@@ -32,29 +21,23 @@ export const addToCart = payload => (dispatch, getState) => {
     });
 
   } else {
-    console.log(payload);
-    newCart.forEach((product) => {
+    newCart.forEach(product => {
       if (product.id === id &&
-          product.quantityInCart < availableStock
+          product.stock_status === "instock"
       ) {
-        product.stock--;
         product.quantityInCart++;
-        flag = true;
+        itemInCart = true;
       }
     });
 
-    if (!flag) {
-      newCart.push({
-        id,
-        name,
-        price,
-        stock_status,
-        stock_quantity,
-        stock: stock_quantity - 1,
-        quantityInCart: 1,
-        img: images[0].src,
-      });
-    }
+    !itemInCart && newCart.push({
+      id,
+      name,
+      price,
+      stock_status,
+      quantityInCart: 1,
+      img: images[0].src,
+    });
 
     dispatch({
       type: ADD_TO_CART,
@@ -69,10 +52,7 @@ export const increaseQuantityInCart = id => (dispatch, getState) => {
   const newCart = getState().cartReducer.productsInCart.slice();
 
   newCart.forEach(product => {
-    if (product.id === id && product.stock > 0) {
-      product.stock--;
-      product.quantityInCart++;
-    }
+    product.id === id && product.quantityInCart++;
   });
 
   dispatch({
@@ -86,10 +66,7 @@ export const decreaseQuantityInCart = id => (dispatch, getState) => {
   const newCart = getState().cartReducer.productsInCart.slice();
 
   newCart.forEach(product => {
-    if (product.id === id && product.stock >= 0  && product.quantityInCart > 0) {
-      product.stock++;
-      product.quantityInCart--;
-    }
+    product.id === id && product.quantityInCart--;
   });
 
   dispatch({
@@ -101,17 +78,10 @@ export const decreaseQuantityInCart = id => (dispatch, getState) => {
 
 export const removeFromCart = id => (dispatch, getState) => {
   const newCart = getState().cartReducer.productsInCart.slice().filter(product => product.id !== id);
+
   dispatch({
     type: REMOVE_FROM_CART,
     newCart
   });
   localStorage.setItem("Cart", JSON.stringify(newCart));
 };
-
-// export const removeFromCart = (product) => (dispatch, getState) => {
-//   const cartItems = getState()
-//     .cart.cartItems.slice()
-//     .filter((x) => x._id !== product._id);
-//   dispatch({ type: REMOVE_FROM_CART, payload: { cartItems } });
-//   localStorage.setItem("cartItems", JSON.stringify(cartItems));
-// };

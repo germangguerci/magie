@@ -19,10 +19,17 @@ const useStyles = makeStyles({
     root: {
       maxWidth: 345,
       width: 245,
+      textAlign: "center",
     },
     media: {
       height: 150,
-    },    
+    },
+    price: {
+      justifyContent: "center",
+    },
+    button: {
+      justifyContent: "center",
+    },
   });
 
   let theme = createMuiTheme();
@@ -45,7 +52,7 @@ export default function ItemCard ({product}) {
     }
     if (product.sale_price){
       var precio = ""
-      precio = (<Grid container alignItems="center" spacing={2}>
+      precio = (<Grid container alignItems="center" className={classes.price} spacing={2}>
                   <Grid item>
                     <ThemeProvider theme={theme}>
                       <Typography style={{ textDecorationLine: 'line-through' }} variant="h6" color="textSecondary" component="h2"> {`$${product.regular_price}`} </Typography>
@@ -77,8 +84,7 @@ export default function ItemCard ({product}) {
           <CardContent>
             {precio}
           </CardContent>
-          <CardActions>
-            <Button variant="outlined" size="small">BUY</Button>
+          <CardActions className={classes.button} >
             <Button size="small" variant="outlined" onClick={e => handleAddToCart(e)} startIcon={<AddShoppingCartIcon />}> Cart </Button>
           </CardActions>
       </Card>  

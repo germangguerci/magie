@@ -10,8 +10,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 
 const LandingPage = () => {
-
-
+    window.location.search.includes("&status=approved&") && localStorage.setItem("Cart", "");
 
     return(
         <>
