@@ -13,8 +13,7 @@ export const addToCart = payload => (dispatch, getState) => {
 
   let itemInCart = false;
   if (stock_status !== "instock") {
-    console.log("name: " + name + " stock_status: " + stock_status);
-
+    
     dispatch({
       type: NO_STOCK,
       newCart,

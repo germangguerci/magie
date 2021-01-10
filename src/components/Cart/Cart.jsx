@@ -26,6 +26,7 @@ export default Cart;
 
 /* 
     PAGO REALIZADO:
+
     collection_id=1232464712&
     collection_status=approved&
     payment_id=1232464712&
@@ -37,9 +38,78 @@ export default Cart;
     site_id=MLA&
     processing_mode=aggregator&
     merchant_account_id=null
+
+
+    collection_id=1232685524&
+    collection_status=approved&
+    payment_id=1232685524&
+    status=approved&
+    external_reference=null&
+    payment_type=credit_card&
+    merchant_order_id=2201362519&
+    preference_id=694878249-57bf0fd9-6b65-4eef-a9c6-cdb8008344ad&
+    site_id=MLA&
+    processing_mode=aggregator&
+    merchant_account_id=null
 */
 
+/*
+const data = {
+  payment_method: "bacs",
+  payment_method_title: "Direct Bank Transfer",
+  set_paid: true,
+  billing: {
+    first_name: "John",
+    last_name: "Doe",
+    address_1: "969 Market",
+    address_2: "",
+    city: "San Francisco",
+    state: "CA",
+    postcode: "94103",
+    country: "US",
+    email: "john.doe@example.com",
+    phone: "(555) 555-5555"
+  },
+  shipping: {
+    first_name: "John",
+    last_name: "Doe",
+    address_1: "969 Market",
+    address_2: "",
+    city: "San Francisco",
+    state: "CA",
+    postcode: "94103",
+    country: "US"
+  },
+  line_items: [
+    {
+      product_id: 93,
+      quantity: 2
+    },
+    {
+      product_id: 22,
+      variation_id: 23,
+      quantity: 1
+    }
+  ],
+  shipping_lines: [
+    {
+      method_id: "flat_rate",
+      method_title: "Flat Rate",
+      total: "10.00"
+    }
+  ]
+};
+*/
 
+/* 
+?collection_id=1232684553&collection_status=approved&payment_id=1232684553&status=approved&external_reference=null&payment_type=credit_card&merchant_order_id=2201296071&preference_id=694878249-6d5cd612-d613-485f-a92f-03847fe6f5fd&site_id=MLA&processing_mode=aggregator&merchant_account_id=null
+*/
+
+/*
+ curl -X GET \
+  'https://api.mercadopago.com/merchant_orders/:2201362519' \
+  -H 'Authorization: Bearer TEST-7543431084673570-011002-510f1b079bd2dbeb6027d3b12f74eabb-694878448'
+*/
 
 /* const fakeUsers = [
     {

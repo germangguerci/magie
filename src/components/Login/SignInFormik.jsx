@@ -29,8 +29,8 @@ const WithMaterialUI = ({onClose}) => {
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
-      email: 'foobar@example.com',
-      password: 'foobar',
+      email: '',
+      password: '',
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {

@@ -5,10 +5,12 @@ import { Toolbar, Typography, Grid } from '@material-ui/core';
 import { useStylesMobile } from './styles';
 
 import CartItem from './CartItem';
+import ButtonLogIn from './ButtonLogIn';
 
-const MobileCart = ({mobileView}) => {
+const MobileCart = ({ mobileView }) => {
     const productsInCart = useSelector(state => state.cartReducer.productsInCart);
     const stylesMobile = useStylesMobile();
+    const loggedIn = JSON.parse(localStorage.getItem("loggedin" ))
 
     const items = productsInCart.map(product => {
         return {
@@ -56,15 +58,17 @@ const MobileCart = ({mobileView}) => {
                     <Grid item xs={1} sm={1} />
                 </Grid>
             </Toolbar>
-            <div className={stylesMobile.payPart} >
-                <Typography variant="h4" className={stylesMobile.total} >Total: ${ productsInCart
-                .reduce((acc, product) => acc + product.price * product.quantityInCart, 0)}
-                </Typography>
-                <form action="http://localhost:3001/checkout" method="POST" >
-                    <input type="hidden" name="items" value={ JSON.stringify(items)} />
-                    <input type="submit" value="PROCEED TO CHECKOUT" className={stylesMobile.payButton} />
-                </form>
-            </div>
+            { loggedIn ? (productsInCart.length >= 1 && <div className={stylesDesktop.payPart} >
+                                                <Typography variant="h3" key="total" className={stylesDesktop.total} >Total: ${ productsInCart
+                                                .reduce((acc, product) => acc + product.price * product.quantityInCart, 0) }
+                                                </Typography>
+                                                <form action="http://localhost:3000/checkout" method="POST"  >
+                                                    <input key="items" type="hidden" name="items" value={JSON.stringify(items)} />
+                                                    <input key="submit" type="submit" name="submit" value="PROCEED TO CHECKOUT" className={stylesDesktop.payButton} />
+                                                </form>
+                                            </div>)
+                        : productsInCart.length && <ButtonLogIn />
+            }
         </div>
     )
 }
