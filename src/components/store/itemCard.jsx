@@ -15,22 +15,44 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { createMuiTheme, responsiveFontSizes, ThemeProvider } from '@material-ui/core/styles';
 import { Grid } from "@material-ui/core";
-const useStyles = makeStyles({
+
+
+const useStyles = makeStyles((theme) =>({
     root: {
+      backgroundColor: theme.palette.secondary.main,
+      color: theme.palette.primary.main,
       maxWidth: 345,
       width: 245,
       textAlign: "center",
     },
     media: {
+      color: theme.palette.primary.main,
       height: 150,
     },
     price: {
+      color: theme.palette.primary.main,
+      backgroundColor: theme.palette.secondary.main,
+      borderColor: theme.palette.primary.main,
       justifyContent: "center",
     },
     button: {
+      color: theme.palette.primary.main,
+      borderColor: theme.palette.primary.main,
       justifyContent: "center",
     },
-  });
+    cart: {
+      borderRadius: theme.shape.borderRadius,
+      color: theme.palette.primary.main,
+      backgroundColor: theme.palette.secondary.dark,
+      '&:hover':{
+        backgroundColor: "#A29605",
+        outline: "none",
+      },
+      '&:active':{
+        outline: "none",
+      }
+    }
+  }));
 
   let theme = createMuiTheme();
   theme = responsiveFontSizes(theme);
@@ -68,7 +90,7 @@ export default function ItemCard ({product}) {
                   </Grid>
                 </Grid>)}
     else{
-      precio = (<Typography variant="h6" color="textSecondary" component="h2">
+      precio = (<Typography className={classes.price} variant="h6" color="textSecondary" component="h2">
       {`$${product.price}`}
     </Typography>)
     }
@@ -85,7 +107,7 @@ export default function ItemCard ({product}) {
             {precio}
           </CardContent>
           <CardActions className={classes.button} >
-            <Button size="small" variant="outlined" onClick={e => handleAddToCart(e)} startIcon={<AddShoppingCartIcon />}> Cart </Button>
+            <Button className={classes.cart} elevation="24" size="small" variant="outlined" onClick={e => handleAddToCart(e)} startIcon={<AddShoppingCartIcon />}> Cart </Button>
           </CardActions>
       </Card>  
       </Grid>

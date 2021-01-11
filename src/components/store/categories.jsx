@@ -8,8 +8,12 @@ import SearchBar from "./searchbar";
 import AppsIcon from '@material-ui/icons/Apps';
 
 const useStyles = makeStyles((theme) => ({
-  toolbar: {
+  AppBar:{
+    backgroundColor: theme.palette.primary.light,
     borderBottom: `1px solid ${theme.palette.divider}`,
+  },
+  toolbar: {
+    
     justifyContent: 'space-between',
   },
   inputRoot: {
@@ -190,7 +194,7 @@ export default function Categories({categorys, filter, onSearch, onClear, filter
     return (
         <header>
             <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/>
-            <AppBar position="static">
+            <AppBar className={classes.AppBar} position="static">
                 <Container maxWidth="lg"> 
                     {mobileView ? displayMobile() : displayDesktop()}
                 </Container>    

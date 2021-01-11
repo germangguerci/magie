@@ -7,6 +7,7 @@ import Spinner from './loading'
 import "./styles/homeStore.css";
 import {getProducts, getCategorys, getItemByCat, getItemByName, getCategoryChilds} from './catalogUtils'
 import { Grid, Container } from "@material-ui/core";
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 
 // API
@@ -93,6 +94,7 @@ const HomeStore = (props) => {
 
   return (
     <>
+    <CssBaseline />
     <Grid container justify="center" spacing={3}>
         <Grid item xs={12} sm={12}>
           {category && <Categoria filterCat={filterCat} categorys={category}  filter={handlerFilter} onSearch={handlerSearch} onClear={handlerClear}/> }
