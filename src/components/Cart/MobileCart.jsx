@@ -1,7 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { Toolbar, Typography, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
+import { Toolbar } from '@material-ui/core';
 import { useStylesMobile } from './styles';
 
 import CartItem from './CartItem';
